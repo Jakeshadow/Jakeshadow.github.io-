@@ -419,3 +419,143 @@ html[lang="en"] [lang="en"] { display: inline; }
   font-size: 0.8rem;
   color: var(--color-text-secondary);
 }
+
+/* === Scroll Reveal === */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger sections slightly */
+#projects.reveal { transition-delay: 0.05s; }
+#skills.reveal  { transition-delay: 0.1s; }
+#insights.reveal { transition-delay: 0.15s; }
+
+/* === Mobile Navigation === */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px var(--content-padding);
+    font-size: 0.95rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* === Responsive — Tablet (768px) === */
+@media (max-width: 768px) {
+  :root {
+    --section-gap: 60px;
+  }
+
+  .hero-name {
+    font-size: 1.65rem;
+  }
+
+  .project-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-desc {
+    max-width: 100%;
+  }
+}
+
+/* === Responsive — Mobile (375px-480px) === */
+@media (max-width: 480px) {
+  :root {
+    --section-gap: 48px;
+    --content-padding: 18px;
+  }
+
+  #hero {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+
+  .hero-name {
+    font-size: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 0.9rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 0.7rem;
+    margin-bottom: 24px;
+  }
+
+  .timeline {
+    padding-left: 22px;
+  }
+
+  .timeline-dot {
+    left: -22px;
+    width: 9px;
+    height: 9px;
+  }
+
+  .timeline-role {
+    font-size: 1rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.82rem;
+  }
+
+  .project-metric {
+    font-size: 1.4rem;
+  }
+
+  .skill-cloud {
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+  }
+
+  .insight-title {
+    font-size: 0.85rem;
+  }
+
+  .insight-date {
+    font-size: 0.72rem;
+  }
+}
