@@ -12,7 +12,28 @@
 </head>
 <body>
 
-  <header id="site-header"></header>
+  <header id="site-header">
+      <nav class="nav-container">
+        <a href="#" class="nav-logo">YN</a>
+        <ul class="nav-links">
+          <li><a href="#timeline">
+            <span lang="zh">经历</span><span lang="en">Timeline</span>
+          </a></li>
+          <li><a href="#projects">
+            <span lang="zh">项目</span><span lang="en">Projects</span>
+          </a></li>
+          <li><a href="#skills">
+            <span lang="zh">技能</span><span lang="en">Skills</span>
+          </a></li>
+          <li><a href="#insights">
+            <span lang="zh">观点</span><span lang="en">Insights</span>
+          </a></li>
+        </ul>
+        <button id="hamburger" class="hamburger" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </nav>
+    </header>
 
   <main>
     <section id="hero">
@@ -175,7 +196,12 @@
     </section>
   </main>
 
-  <footer id="site-footer"></footer>
+  <footer id="site-footer">
+      <p class="footer-text">
+        <span lang="zh">&copy; 2026 Your Name. 保留所有权利。</span>
+        <span lang="en">&copy; 2026 Your Name. All rights reserved.</span>
+      </p>
+    </footer>
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
