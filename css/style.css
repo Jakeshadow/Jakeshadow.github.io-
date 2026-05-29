@@ -1,0 +1,62 @@
+/* === Reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Design Tokens === */
+:root {
+  --color-text: #1a1a2e;
+  --color-text-secondary: #4a4a6a;
+  --color-bg: #faf9f6;
+  --color-accent: #c44536;
+  --color-success: #2d6a4f;
+  --color-border: #e8e4df;
+  --color-card-bg: #f5f2ed;
+
+  --font-en: 'Inter', system-ui, sans-serif;
+  --font-zh: 'Noto Sans SC', sans-serif;
+
+  --max-width: 720px;
+  --section-gap: 80px;
+  --content-padding: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-zh), var(--font-en);
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+section {
+  padding: var(--section-gap) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
