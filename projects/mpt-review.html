@@ -81,6 +81,10 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; padding: 0; }
     .faq-a.open { max-height: 300px; padding-bottom: 16px; }
 
+    .location-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; vertical-align: middle; margin-right: 4px; }
+    .location-badge.global { background: var(--color-success); color: #fff; }
+    .location-badge.regional { background: var(--color-accent); color: #fff; }
+
     /* Responsive */
     @media (max-width: 640px) {
       .screenshots-grid { grid-template-columns: 1fr; }
@@ -181,56 +185,59 @@
     <!-- Quick Setup -->
     <div class="review-section" id="setup">
       <h2>Real Setup Guide (Took Me 1.5 Hours. You? 10 Minutes.)</h2>
-      <p>Every tutorial says "quick and easy." Here's what actually works, including the parts everyone else skips.</p>
+      <p>Every tutorial says "quick and easy." Here's what actually works. Each step tagged so you know what affects you:</p>
+      <p style="margin-bottom:20px;"><span class="location-badge global">GLOBAL</span> Happens to everyone, everywhere &nbsp;|&nbsp; <span class="location-badge regional">REGIONAL</span> China / restricted-network users only</p>
 
       <ol class="step-list">
         <li>
           <div class="step-content">
-            <strong>Pick the RIGHT version</strong><br>
+            <strong><span class="location-badge global">GLOBAL</span> Pick the RIGHT version</strong><br>
             The latest release (v1.2.9) is <strong>API-only — no Web UI</strong>. Beginners must use the old version:<br>
             <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code><br>
             <code>cd MoneyPrinterTurbo</code><br>
-            <em>VPN ON for git clone. The connection resets constantly without it. Use <code>--depth 1</code> or it'll fail mid-transfer.</em>
+            <em><span class="location-badge regional">REGIONAL</span> VPN ON for git clone — GitHub connections reset frequently through GFW. <code>--depth 1</code> minimizes the pain.</em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Install dependencies — with the right flags</strong><br>
-            Python 3.10+ required. <strong>VPN OFF</strong>. Default pip is too slow and WILL timeout. Use Aliyun mirror:<br>
+            <strong><span class="location-badge global">GLOBAL</span> Install dependencies</strong><br>
+            Python 3.10+ required. Default pip is slow — use a mirror:<br>
             <code>pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/</code><br>
-            <em>If you get "moviepy.editor not found": <code>pip install moviepy==1.0.3</code> — v2.0.0 broke the API MPT v1.1.0 depends on.</em>
+            <em><span class="location-badge global">GLOBAL</span> If you get "moviepy.editor not found": <code>pip install moviepy==1.0.3</code> — v2.0.0 broke the API that MPT v1.1.0 needs.<br><span class="location-badge regional">REGIONAL</span> VPN OFF for pip — Aliyun mirror is faster from within China.</em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Configure in 30 seconds</strong><br>
+            <strong><span class="location-badge global">GLOBAL</span> Configure in 30 seconds</strong><br>
             Copy <code>config.example.toml</code> → <code>config.toml</code>. Change ONE line:<br>
             <code>llm_provider = "g4f"</code><br>
-            That's it. g4f = free AI. Edge TTS = free voiceover. No API keys. No Azure registration. No credit card.
+            g4f = free AI. Edge TTS = free voiceover. No API keys. No credit card. Works anywhere.
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Launch the BACKEND first</strong><br>
+            <strong><span class="location-badge global">GLOBAL</span> Launch the BACKEND first</strong><br>
             Open PowerShell #1:<br>
             <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
             <code>python main.py</code><br>
-            Wait for <em>"start server, docs: http://127.0.0.1:8080/docs"</em>. Do NOT close this window.
+            Wait for <em>"start server, docs: http://127.0.0.1:8080/docs"</em>. Do NOT close this window.<br>
+            <em>macOS/Linux: use Terminal instead of PowerShell, paths use / not \.</em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Launch the FRONTEND</strong><br>
+            <strong><span class="location-badge global">GLOBAL</span> Launch the FRONTEND</strong><br>
             Open PowerShell #2:<br>
             <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
             <code>streamlit run .\webui\Main.py</code><br>
-            Browser opens at <strong>http://localhost:8501</strong>. Type a topic, click Generate. <strong>VPN ON</strong> if it hangs at "downloading materials."
+            Browser opens at <strong>http://localhost:8501</strong>. Type a topic, click Generate.<br>
+            <em><span class="location-badge regional">REGIONAL</span> VPN ON if it hangs at "downloading materials" — Pexels is blocked in China.</em>
           </div>
         </li>
       </ol>
 
       <div class="price-note">
-        <strong>Why so many steps?</strong> MPT is a community project with rapid version churn. The v1.2.x rewrite dropped the GUI. The pip dependencies are pinned to incompatible versions. No one documented this — until now. This guide turns a 1.5-hour debugging session into a 10-minute copy-paste job.
+        <strong>Bottom line:</strong> 3 of 5 steps have GLOBAL issues (version choice, moviepy conflict, dual-terminal architecture). 2 of 5 have REGIONAL issues (git clone stability, pip speed, Pexels access). <strong>Even without the GFW, this setup would still take 30+ minutes</strong> the first time. The official docs skip everything you just read.
       </div>
     </div>
 
