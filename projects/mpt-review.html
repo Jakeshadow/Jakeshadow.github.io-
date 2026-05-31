@@ -7,13 +7,33 @@
   <title>MoneyPrinterTurbo Review — Free AI Video Generator, Does It Work?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    body { font-family: var(--font-en); }
+    body { font-family: var(--font-zh), var(--font-en); }
     .project-detail { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
     .back-link { display: inline-block; margin: 28px 0 20px; font-size: 0.85rem; color: var(--color-text-secondary); }
     .back-link:hover { color: var(--color-accent); }
+
+    /* Lang toggle */
+    .lang-toggle-bar { text-align: right; margin-bottom: -12px; }
+    .lang-btn { background: none; border: 1px solid var(--color-border); cursor: pointer; color: var(--color-text-secondary); font-size: 0.78rem; font-family: inherit; padding: 4px 12px; transition: all 0.2s; }
+    .lang-btn:first-child { border-radius: 6px 0 0 6px; }
+    .lang-btn:last-child { border-radius: 0 6px 6px 0; margin-left: -1px; }
+    .lang-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+    .lang-btn:hover:not(.active) { border-color: var(--color-accent); color: var(--color-accent); }
+
+    /* Bilingual visibility */
+    html[lang="zh"] [lang="en"] { display: none; }
+    html[lang="en"] [lang="zh"] { display: none; }
+    html[lang="en"] [lang="en"] { display: inline; }
+    html[lang="zh"] [lang="zh"] { display: inline; }
+    /* block elements need block display */
+    html[lang="en"] [lang="en"].block, html[lang="zh"] [lang="zh"].block { display: block; }
+    html[lang="en"] li[lang="en"] { display: list-item; }
+    html[lang="zh"] li[lang="zh"] { display: list-item; }
+    html[lang="en"] tr[lang="en"] { display: table-row; }
+    html[lang="zh"] tr[lang="zh"] { display: table-row; }
 
     /* Hero */
     .review-hero { text-align: center; padding: 40px 0 32px; border-bottom: 1px solid var(--color-border); }
@@ -56,6 +76,11 @@
     .price-card ul li::before { content: '· '; font-weight: 700; }
     .price-note { background: #fff3cd; border: 1px solid #e8d78e; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #6c5a0c; line-height: 1.6; margin-top: 16px; }
 
+    /* Location badges */
+    .location-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; vertical-align: middle; margin-right: 4px; }
+    .location-badge.global { background: var(--color-success); color: #fff; }
+    .location-badge.regional { background: var(--color-accent); color: #fff; }
+
     /* Numbered steps */
     .step-list { list-style: none; counter-reset: step; }
     .step-list li { counter-increment: step; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; padding: 18px; background: var(--color-card-bg); border-radius: 10px; border: 1px solid var(--color-border); }
@@ -79,11 +104,7 @@
     .faq-q::after { content: '+'; font-size: 1.2rem; font-weight: 400; color: var(--color-text-secondary); transition: transform 0.2s; flex-shrink: 0; }
     .faq-q.open::after { content: '\2212'; }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; padding: 0; }
-    .faq-a.open { max-height: 300px; padding-bottom: 16px; }
-
-    .location-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; vertical-align: middle; margin-right: 4px; }
-    .location-badge.global { background: var(--color-success); color: #fff; }
-    .location-badge.regional { background: var(--color-accent); color: #fff; }
+    .faq-a.open { max-height: 400px; padding-bottom: 16px; }
 
     /* Responsive */
     @media (max-width: 640px) {
@@ -101,164 +122,205 @@
 <body style="padding-top:0;">
 
   <div class="project-detail">
-    <a href="../index.html" class="back-link">&larr; Back to Home</a>
+    <a href="../index.html" class="back-link">&larr; <span lang="zh">返回首页</span><span lang="en">Back to Home</span></a>
+    <div class="lang-toggle-bar">
+      <button id="lang-en" class="lang-btn active">EN</button><button id="lang-zh" class="lang-btn">中文</button>
+    </div>
 
     <!-- Hero -->
     <div class="review-hero">
-      <div class="verdict-badge">It Works. The Setup Hurts. Here's Everything.</div>
-      <h1>MoneyPrinterTurbo: Free AI Video Generator</h1>
-      <p class="hero-subtitle">After 1.5 hours, 4 failed git clones, a moviepy version conflict, and a version that had no GUI — I finally made a video. This is the guide I wish existed when I started.</p>
-      <a href="#setup" class="hero-cta">Skip to Real Setup Guide &darr;</a>
+      <div class="verdict-badge">
+        <span lang="zh">能用。但安装很痛苦。这是完整指南。</span>
+        <span lang="en">It Works. The Setup Hurts. Here's Everything.</span>
+      </div>
+      <h1>MoneyPrinterTurbo: <span lang="zh">免费AI视频生成器</span><span lang="en">Free AI Video Generator</span></h1>
+      <p class="hero-subtitle">
+        <span lang="zh">花了1.5小时，经历了4次git clone失败、moviepy版本冲突、装错了一个没有界面的版本——我终于生成了第一个视频。这是我希望开始之前就有人写好的指南。</span>
+        <span lang="en">After 1.5 hours, 4 failed git clones, a moviepy version conflict, and a version that had no GUI — I finally made a video. This is the guide I wish existed when I started.</span>
+      </p>
+      <a href="#setup" class="hero-cta">
+        <span lang="zh">跳到真实安装指南 &darr;</span>
+        <span lang="en">Skip to Real Setup Guide &darr;</span>
+      </a>
     </div>
 
     <!-- What Is It? -->
     <div class="review-section">
-      <h2>What Is MoneyPrinterTurbo?</h2>
-      <p>MoneyPrinterTurbo is an <strong>open-source AI tool</strong> that automatically generates videos from a single sentence. You give it a topic (e.g. "Top 5 facts about black holes") and it produces a complete video — script, voiceover, visuals, subtitles, and background music — without you touching a timeline.</p>
-      <p>It was built by a Chinese developer (<strong>harry0703</strong>) and gained massive traction on GitHub for being the first truly one-click AI video pipeline that runs locally.</p>
+      <h2><span lang="zh">MoneyPrinterTurbo 是什么？</span><span lang="en">What Is MoneyPrinterTurbo?</span></h2>
+      <p>
+        <span lang="zh">MoneyPrinterTurbo 是一个<strong>开源的 AI 工具</strong>，可以根据一句话自动生成视频。你给它一个主题（例如"关于黑洞的5个冷知识"），它会自动生成完整视频——包括文案、配音、画面、字幕和背景音乐——完全不需要你动手剪辑。</span>
+        <span lang="en">MoneyPrinterTurbo is an <strong>open-source AI tool</strong> that automatically generates videos from a single sentence. You give it a topic (e.g. "Top 5 facts about black holes") and it produces a complete video — script, voiceover, visuals, subtitles, and background music — without you touching a timeline.</span>
+      </p>
+      <p>
+        <span lang="zh">由国内开发者 <strong>harry0703</strong> 创建，因"第一个真正一键式 AI 视频生成流水线"在 GitHub 上爆火。</span>
+        <span lang="en">It was built by a Chinese developer (<strong>harry0703</strong>) and gained massive traction on GitHub for being the first truly one-click AI video pipeline that runs locally.</span>
+      </p>
       <div class="gh-badge">
         <span>&#11088;</span>
         <span class="stars">18,000+</span>
-        <span>stars on GitHub</span>
+        <span><span lang="zh">GitHub 星标</span><span lang="en">stars on GitHub</span></span>
       </div>
     </div>
 
     <!-- Results At A Glance -->
     <div class="review-section" id="results">
-      <h2>Results At A Glance</h2>
-      <p>I tested it with the prompt <em>"Top 3 things to do in Tokyo"</em>. Here's what came out, side by side with a manually-edited video for comparison:</p>
+      <h2><span lang="zh">效果一览</span><span lang="en">Results At A Glance</span></h2>
+      <p>
+        <span lang="zh">我用提示词 <em>"东京必去的3个地方"</em> 进行了测试。以下是 AI 生成视频与手动剪辑的对比：</span>
+        <span lang="en">I tested it with the prompt <em>"Top 3 things to do in Tokyo"</em>. Here's what came out, side by side with a manually-edited video for comparison:</span>
+      </p>
 
       <div class="screenshots-grid">
         <div class="screenshot-wrap">
           <img src="../assets/mpt/screenshot1.png" alt="MPT generated video still" loading="lazy">
-          <div class="screenshot-label">AI-Generated (MPT) &mdash; ~60s to produce</div>
+          <div class="screenshot-label">
+            <span lang="zh">AI 生成（MPT）— 约 60 秒完成</span>
+            <span lang="en">AI-Generated (MPT) — ~60s to produce</span>
+          </div>
         </div>
         <div class="screenshot-wrap">
           <img src="../assets/mpt/screenshot2.png" alt="Manually edited video reference" loading="lazy">
-          <div class="screenshot-label">Manually Edited &mdash; ~30min to produce</div>
+          <div class="screenshot-label">
+            <span lang="zh">手动剪辑 — 约 30 分钟完成</span>
+            <span lang="en">Manually Edited — ~30min to produce</span>
+          </div>
         </div>
       </div>
 
       <table class="compare-table">
-        <tr><th>Criteria</th><th>MoneyPrinterTurbo</th><th>Manual Editing</th></tr>
-        <tr><td>Time to produce 1-min video</td><td class="rating">~60 seconds</td><td>~30 minutes</td></tr>
-        <tr><td>Visual quality</td><td class="rating">Good (stock footage)</td><td>Depends on skill</td></tr>
-        <tr><td>Voiceover quality</td><td class="rating">Good (Edge TTS, free)</td><td>Needs recording/mic</td></tr>
-        <tr><td>Customization</td><td>Limited to templates</td><td class="rating">Full control</td></tr>
-        <tr><td>Cost per video</td><td class="rating">~$0.01 (API fees)</td><td>Time + subscription</td></tr>
+        <tr><th><span lang="zh">对比维度</span><span lang="en">Criteria</span></th><th>MoneyPrinterTurbo</th><th><span lang="zh">手动剪辑</span><span lang="en">Manual Editing</span></th></tr>
+        <tr><td><span lang="zh">1分钟视频耗时</span><span lang="en">Time to produce 1-min video</span></td><td class="rating"><span lang="zh">~60 秒</span><span lang="en">~60 seconds</span></td><td><span lang="zh">~30 分钟</span><span lang="en">~30 minutes</span></td></tr>
+        <tr><td><span lang="zh">画面质量</span><span lang="en">Visual quality</span></td><td class="rating"><span lang="zh">不错（素材库拼接）</span><span lang="en">Good (stock footage)</span></td><td><span lang="zh">取决于剪辑水平</span><span lang="en">Depends on skill</span></td></tr>
+        <tr><td><span lang="zh">配音质量</span><span lang="en">Voiceover quality</span></td><td class="rating"><span lang="zh">良好（Edge TTS，免费）</span><span lang="en">Good (Edge TTS, free)</span></td><td><span lang="zh">需要录音设备</span><span lang="en">Needs recording/mic</span></td></tr>
+        <tr><td><span lang="zh">自定义程度</span><span lang="en">Customization</span></td><td><span lang="zh">限于模板参数</span><span lang="en">Limited to templates</span></td><td class="rating"><span lang="zh">完全自由</span><span lang="en">Full control</span></td></tr>
+        <tr><td><span lang="zh">单条视频成本</span><span lang="en">Cost per video</span></td><td class="rating"><span lang="zh">~$0.01（API 费用）</span><span lang="en">~$0.01 (API fees)</span></td><td><span lang="zh">时间 + 软件订阅</span><span lang="en">Time + subscription</span></td></tr>
       </table>
     </div>
 
     <!-- Is It Free? -->
     <div class="review-section">
-      <h2>Is It Free?</h2>
-      <p>The short answer: <strong>yes, completely free. Zero API keys required.</strong> If you use v1.1.0 + the g4f config shown above.</p>
+      <h2><span lang="zh">要钱吗？</span><span lang="en">Is It Free?</span></h2>
+      <p>
+        <span lang="zh">简单回答：<strong>完全免费，零 API Key 也可用。</strong>前提是使用 v1.1.0 + g4f 配置（见下方指南）。</span>
+        <span lang="en">The short answer: <strong>yes, completely free. Zero API keys required.</strong> If you use v1.1.0 + the g4f config shown below.</span>
+      </p>
 
       <div class="price-cards">
         <div class="price-card free">
-          <h3>v1.1.0 + g4f + Edge TTS</h3>
+          <h3><span lang="zh">v1.1.0 + g4f + Edge TTS</span><span lang="en">v1.1.0 + g4f + Edge TTS</span></h3>
           <div class="price-tag">$0</div>
           <ul>
-            <li>g4f = free LLM for script writing</li>
-            <li>Edge TTS = free voiceover (built into Windows)</li>
-            <li>Pexels = free stock footage (no API key needed for basic use)</li>
-            <li>No credit card. No registration. No quota limits.</li>
+            <li lang="zh">g4f = 免费 LLM 写文案</li><li lang="en">g4f = free LLM for script writing</li>
+            <li lang="zh">Edge TTS = 免费配音（Windows 内置）</li><li lang="en">Edge TTS = free voiceover (built into Windows)</li>
+            <li lang="zh">Pexels = 免费素材（无需 API Key）</li><li lang="en">Pexels = free stock footage (no API key needed)</li>
+            <li lang="zh">不需要信用卡。不需要注册。没有任何配额限制。</li><li lang="en">No credit card. No registration. No quota limits.</li>
           </ul>
         </div>
         <div class="price-card paid">
-          <h3>Upgrades (purely optional)</h3>
-          <div class="price-tag">$0–5/mo</div>
+          <h3><span lang="zh">升级选项（纯可选）</span><span lang="en">Upgrades (purely optional)</span></h3>
+          <div class="price-tag"><span lang="zh">$0–5/月</span><span lang="en">$0–5/mo</span></div>
           <ul>
-            <li>OpenAI key → better script quality</li>
-            <li>Azure Speech key → more voice options</li>
-            <li>Pexels API key → faster downloads, more clips</li>
-            <li>Each service has free tiers</li>
+            <li lang="zh">OpenAI Key → 文案质量更好</li><li lang="en">OpenAI key → better script quality</li>
+            <li lang="zh">Azure Speech Key → 更多配音选项</li><li lang="en">Azure Speech key → more voice options</li>
+            <li lang="zh">Pexels API Key → 下载更快、素材更多</li><li lang="en">Pexels API key → faster downloads, more clips</li>
+            <li lang="zh">每个服务都有免费额度</li><li lang="en">Each service has free tiers</li>
           </ul>
         </div>
       </div>
 
       <div class="price-note">
-        <strong>Heads-up for v1.2.x users:</strong> The latest version dropped Edge TTS support and requires Azure API keys. If you see a page asking for Azure credentials, you grabbed the wrong version. Use v1.1.0.
+        <span lang="zh"><strong>给 v1.2.x 用户的提醒：</strong>最新版本去掉了 Edge TTS 支持，需要 Azure API Key。如果你看到页面让你填 Azure 密钥，说明你装错版本了。用 v1.1.0。</span>
+        <span lang="en"><strong>Heads-up for v1.2.x users:</strong> The latest version dropped Edge TTS support and requires Azure API keys. If you see a page asking for Azure credentials, you grabbed the wrong version. Use v1.1.0.</span>
       </div>
     </div>
 
     <!-- Quick Setup -->
     <div class="review-section" id="setup">
-      <h2>Real Setup Guide (Took Me 1.5 Hours. You? 10 Minutes.)</h2>
-      <p>Every tutorial says "quick and easy." Here's what actually works. Each step tagged so you know what affects you:</p>
-      <p style="margin-bottom:20px;"><span class="location-badge global">GLOBAL</span> Happens to everyone, everywhere &nbsp;|&nbsp; <span class="location-badge regional">REGIONAL</span> China / restricted-network users only</p>
+      <h2><span lang="zh">真实安装指南（我装了1.5小时。你？10分钟。）</span><span lang="en">Real Setup Guide (Took Me 1.5 Hours. You? 10 Minutes.)</span></h2>
+      <p>
+        <span lang="zh">每个教程都说"又快又简单"。以下是真正有效的步骤，包括所有别人跳过不谈的部分。每步标注了适用范围：</span>
+        <span lang="en">Every tutorial says "quick and easy." Here's what actually works. Each step tagged so you know what affects you:</span>
+      </p>
+      <p style="margin-bottom:20px;"><span class="location-badge global">GLOBAL</span> <span lang="zh">全球通用，谁都会遇到</span><span lang="en">Happens to everyone, everywhere</span> &nbsp;|&nbsp; <span class="location-badge regional">REGIONAL</span> <span lang="zh">仅限中国/受限网络用户</span><span lang="en">China / restricted-network users only</span></p>
 
       <ol class="step-list">
         <li>
           <div class="step-content">
-            <strong><span class="location-badge global">GLOBAL</span> Pick the RIGHT version</strong><br>
-            The latest release (v1.2.9) is <strong>API-only — no Web UI</strong>. Beginners must use the old version:<br>
+            <strong><span class="location-badge global">GLOBAL</span> <span lang="zh">选对版本</span><span lang="en">Pick the RIGHT version</span></strong><br>
+            <span lang="zh">最新版（v1.2.9）<strong>没有 Web 界面，只有 API</strong>。新手必须用旧版：</span>
+            <span lang="en">The latest release (v1.2.9) is <strong>API-only — no Web UI</strong>. Beginners must use the old version:</span><br>
             <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code><br>
             <code>cd MoneyPrinterTurbo</code><br>
-            <em><span class="location-badge regional">REGIONAL</span> VPN ON for git clone — GitHub connections reset frequently through GFW. <code>--depth 1</code> minimizes the pain.</em>
+            <em><span class="location-badge regional">REGIONAL</span> <span lang="zh">开启 VPN — GitHub 连接经常被重置。<code>--depth 1</code> 减少下载量规避中断。</span><span lang="en">VPN ON for git clone — GitHub connections reset frequently through GFW. <code>--depth 1</code> minimizes the pain.</span></em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong><span class="location-badge global">GLOBAL</span> Install dependencies</strong><br>
-            Python 3.10+ required. Default pip is slow — use a mirror:<br>
+            <strong><span class="location-badge global">GLOBAL</span> <span lang="zh">安装依赖</span><span lang="en">Install dependencies</span></strong><br>
+            <span lang="zh">需要 Python 3.10+。建议使用镜像源加速：</span>
+            <span lang="en">Python 3.10+ required. Use a mirror for speed:</span><br>
             <code>pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/</code><br>
-            <em><span class="location-badge global">GLOBAL</span> If you get "moviepy.editor not found": <code>pip install moviepy==1.0.3</code> — v2.0.0 broke the API that MPT v1.1.0 needs.<br><span class="location-badge regional">REGIONAL</span> VPN OFF for pip — Aliyun mirror is faster from within China.</em>
+            <em><span class="location-badge global">GLOBAL</span> <span lang="zh">如果报错 "moviepy.editor not found"：<code>pip install moviepy==1.0.3</code> — v2.0.0 破坏了 MPT v1.1.0 依赖的 API。</span><span lang="en">If you get "moviepy.editor not found": <code>pip install moviepy==1.0.3</code> — v2.0.0 broke the API MPT v1.1.0 depends on.</span><br><span class="location-badge regional">REGIONAL</span> <span lang="zh">关闭 VPN — 阿里云镜像在国内直连更快。</span><span lang="en">VPN OFF for pip — Aliyun mirror is faster from within China.</span></em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong><span class="location-badge global">GLOBAL</span> Configure in 30 seconds</strong><br>
-            Copy <code>config.example.toml</code> → <code>config.toml</code>. Change ONE line:<br>
+            <strong><span class="location-badge global">GLOBAL</span> <span lang="zh">30 秒配好配置</span><span lang="en">Configure in 30 seconds</span></strong><br>
+            <span lang="zh">复制 <code>config.example.toml</code> → <code>config.toml</code>。只改一行：</span>
+            <span lang="en">Copy <code>config.example.toml</code> → <code>config.toml</code>. Change ONE line:</span><br>
             <code>llm_provider = "g4f"</code><br>
-            g4f = free AI. Edge TTS = free voiceover. No API keys. No credit card. Works anywhere.
+            <span lang="zh">搞定。g4f = 免费 AI 写文案。Edge TTS = 免费配音。不要 API Key。不用注册 Azure。不用绑定信用卡。</span>
+            <span lang="en">That's it. g4f = free AI. Edge TTS = free voiceover. No API keys. No credit card. Works anywhere.</span>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong><span class="location-badge global">GLOBAL</span> Launch the BACKEND first</strong><br>
-            Open PowerShell #1:<br>
+            <strong><span class="location-badge global">GLOBAL</span> <span lang="zh">先启动后端</span><span lang="en">Launch the BACKEND first</span></strong><br>
+            <span lang="zh">打开 PowerShell 窗口 #1：</span><span lang="en">Open PowerShell #1:</span><br>
             <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
             <code>python main.py</code><br>
-            Wait for <em>"start server, docs: http://127.0.0.1:8080/docs"</em>. Do NOT close this window.<br>
-            <em>macOS/Linux: use Terminal instead of PowerShell, paths use / not \.</em>
+            <span lang="zh">看到 <em>"start server, docs: http://127.0.0.1:8080/docs"</em> 就对了。<strong>这个窗口不要关。</strong></span>
+            <span lang="en">Wait for <em>"start server, docs: http://127.0.0.1:8080/docs"</em>. Do NOT close this window.</span><br>
+            <em><span lang="zh">macOS/Linux：用终端代替 PowerShell，路径用 / 不用 \。</span><span lang="en">macOS/Linux: use Terminal instead of PowerShell, paths use / not \.</span></em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong><span class="location-badge global">GLOBAL</span> Launch the FRONTEND</strong><br>
-            Open PowerShell #2:<br>
+            <strong><span class="location-badge global">GLOBAL</span> <span lang="zh">再启动前端</span><span lang="en">Launch the FRONTEND</span></strong><br>
+            <span lang="zh">打开 PowerShell 窗口 #2：</span><span lang="en">Open PowerShell #2:</span><br>
             <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
             <code>streamlit run .\webui\Main.py</code><br>
-            Browser opens at <strong>http://localhost:8501</strong>. Type a topic, click Generate.<br>
-            <em><span class="location-badge regional">REGIONAL</span> VPN ON if it hangs at "downloading materials" — Pexels is blocked in China.</em>
+            <span lang="zh">浏览器自动打开 <strong>http://localhost:8501</strong>。输入主题，点生成。</span>
+            <span lang="en">Browser opens at <strong>http://localhost:8501</strong>. Type a topic, click Generate.</span><br>
+            <em><span class="location-badge regional">REGIONAL</span> <span lang="zh">如果卡在"下载素材"那一步，开启 VPN — Pexels 在国内被墙。</span><span lang="en">VPN ON if it hangs at "downloading materials" — Pexels is blocked in China.</span></em>
           </div>
         </li>
       </ol>
 
       <div class="price-note">
-        <strong>Bottom line:</strong> 3 of 5 steps have GLOBAL issues (version choice, moviepy conflict, dual-terminal architecture). 2 of 5 have REGIONAL issues (git clone stability, pip speed, Pexels access). <strong>Even without the GFW, this setup would still take 30+ minutes</strong> the first time. The official docs skip everything you just read.
+        <span lang="zh"><strong>总结：</strong>5 步中有 3 步存在全球性的坑（版本选择、moviepy 冲突、双终端架构），2 步受中国网络环境影响（git clone 稳定性、pip 速度、Pexels 访问）。<strong>即使没有墙，首次安装至少 30 分钟。</strong>官方文档一个字没提这些。</span>
+        <span lang="en"><strong>Bottom line:</strong> 3 of 5 steps have GLOBAL issues (version choice, moviepy conflict, dual-terminal architecture). 2 of 5 have REGIONAL issues (git clone stability, pip speed, Pexels access). <strong>Even without the GFW, this setup would still take 30+ minutes</strong> the first time. The official docs skip everything you just read.</span>
       </div>
     </div>
 
     <!-- Resources -->
     <div class="review-section">
-      <h2>Resources & Links</h2>
+      <h2><span lang="zh">资源链接</span><span lang="en">Resources & Links</span></h2>
       <ul class="resource-list">
         <li><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener">
-          <span><span class="res-title">GitHub Repository</span><br><span class="res-desc">Source code, issues, and community discussions</span></span>
+          <span><span class="res-title"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub Repository</span></span><br><span class="res-desc"><span lang="zh">源代码、Issue、社区讨论</span><span lang="en">Source code, issues, and community discussions</span></span></span>
           <span>&rarr;</span>
         </a></li>
         <li><a href="https://github.com/harry0703/MoneyPrinterTurbo/releases/tag/v1.1.0" target="_blank" rel="noopener">
-          <span><span class="res-title">v1.1.0 Release (Recommended)</span><br><span class="res-desc">The last version with a Web UI — use this if you want a GUI</span></span>
+          <span><span class="res-title"><span lang="zh">v1.1.0 发行版（推荐）</span><span lang="en">v1.1.0 Release (Recommended)</span></span><br><span class="res-desc"><span lang="zh">最后一个有 Web 界面的版本——新手用这个</span><span lang="en">The last version with a Web UI — use this if you want a GUI</span></span></span>
           <span>&rarr;</span>
         </a></li>
         <li><a href="https://github.com/harry0703/MoneyPrinterTurbo/blob/main/README-en.md" target="_blank" rel="noopener">
-          <span><span class="res-title">Official English README</span><br><span class="res-desc">Installation reference (but follow our guide above for fewer headaches)</span></span>
+          <span><span class="res-title"><span lang="zh">官方英文 README</span><span lang="en">Official English README</span></span><br><span class="res-desc"><span lang="zh">安装参考（但建议用上面的指南，少走弯路）</span><span lang="en">Installation reference (but follow our guide above for fewer headaches)</span></span></span>
           <span>&rarr;</span>
         </a></li>
         <li><a href="https://www.pexels.com/" target="_blank" rel="noopener">
-          <span><span class="res-title">Pexels</span><br><span class="res-desc">Free stock footage — register for an API key if downloads are slow</span></span>
+          <span><span class="res-title">Pexels</span><br><span class="res-desc"><span lang="zh">免费素材库——下载慢就注册个 API Key</span><span lang="en">Free stock footage — register for an API key if downloads are slow</span></span></span>
           <span>&rarr;</span>
         </a></li>
       </ul>
@@ -266,46 +328,70 @@
 
     <!-- FAQ -->
     <div class="review-section">
-      <h2>Frequently Asked Questions</h2>
+      <h2>FAQ</h2>
 
       <div class="faq-item">
-        <button class="faq-q">Which version should I use? v1.1.0 or v1.2.x?</button>
-        <div class="faq-a"><p><strong>v1.1.0 for beginners.</strong> It has a Streamlit Web UI (point-and-click), built-in Edge TTS (free voiceover), and g4f support (free AI). v1.2.x is a complete rewrite — FastAPI-only, no GUI, requires external API keys. Great for developers building pipelines; terrible for someone who just wants to make a video.</p></div>
+        <button class="faq-q"><span lang="zh">该用哪个版本？v1.1.0 还是 v1.2.x？</span><span lang="en">Which version should I use? v1.1.0 or v1.2.x?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh"><strong>新手用 v1.1.0。</strong>有 Streamlit 图形界面（点点就行），内置 Edge TTS（免费配音），支持 g4f（免费 AI）。v1.2.x 是完全重写版——纯 FastAPI、没有界面、需要外部 API Key。适合开发者做流水线集成；对只想生成一个视频的人来说是灾难。</span>
+          <span lang="en"><strong>v1.1.0 for beginners.</strong> It has a Streamlit Web UI (point-and-click), built-in Edge TTS (free voiceover), and g4f support (free AI). v1.2.x is a complete rewrite — FastAPI-only, no GUI, requires external API keys. Great for developers building pipelines; terrible for someone who just wants to make a video.</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">Why does git clone keep failing?</button>
-        <div class="faq-a"><p>The full repo is large. Two fixes: (1) Use <code>--depth 1</code> for a shallow clone — skips git history, reduces download by 80%. (2) Turn on your VPN if you're outside the US — GitHub connections from some regions reset frequently. The magic command: <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code></p></div>
+        <button class="faq-q"><span lang="zh">为什么 git clone 老是失败？</span><span lang="en">Why does git clone keep failing?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">仓库比较大。两个解决办法：(1) 用 <code>--depth 1</code> 浅克隆——跳过历史记录，下载量减少 80%。(2) 如果不在美国，开 VPN——部分地区到 GitHub 的连接会频繁重置。黄金命令：<code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code></span>
+          <span lang="en">The full repo is large. Two fixes: (1) Use <code>--depth 1</code> for a shallow clone — skips git history, reduces download by 80%. (2) Turn on your VPN if you're outside the US — GitHub connections from some regions reset frequently. The magic command: <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code></span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">ModuleNotFoundError: No module named 'moviepy.editor'</button>
-        <div class="faq-a"><p>moviepy 2.0 removed the <code>moviepy.editor</code> module that MPT v1.1.0 depends on. Fix: <code>pip install moviepy==1.0.3</code>. This happens because <code>requirements.txt</code> doesn't pin an exact version.</p></div>
+        <button class="faq-q"><span lang="zh">ModuleNotFoundError: No module named 'moviepy.editor'</span><span lang="en">ModuleNotFoundError: No module named 'moviepy.editor'</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">moviepy 2.0 移除了 MPT v1.1.0 依赖的 <code>moviepy.editor</code> 模块。修复：<code>pip install moviepy==1.0.3</code>。因为 <code>requirements.txt</code> 没有锁定精确版本。</span>
+          <span lang="en">moviepy 2.0 removed the <code>moviepy.editor</code> module that MPT v1.1.0 depends on. Fix: <code>pip install moviepy==1.0.3</code>. This happens because <code>requirements.txt</code> doesn't pin an exact version.</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">Why do I need two terminal windows?</button>
-        <div class="faq-a"><p>MPT v1.1.0 splits the backend (FastAPI, handles video rendering) and frontend (Streamlit, the UI you see) into separate processes. The backend runs on <code>python main.py</code> (port 8080), the frontend on <code>streamlit run webui/Main.py</code> (port 8501). You need both running. Keep both windows open while making videos.</p></div>
+        <button class="faq-q"><span lang="zh">为什么要开两个终端窗口？</span><span lang="en">Why do I need two terminal windows?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">MPT v1.1.0 把后端（FastAPI，负责视频渲染）和前端（Streamlit，你看到的界面）拆成了两个独立进程。后端用 <code>python main.py</code> 启动（端口 8080），前端用 <code>streamlit run webui/Main.py</code> 启动（端口 8501）。两个都需要跑着。生成视频期间两个窗口都别关。</span>
+          <span lang="en">MPT v1.1.0 splits the backend (FastAPI, handles video rendering) and frontend (Streamlit, the UI you see) into separate processes. The backend runs on <code>python main.py</code> (port 8080), the frontend on <code>streamlit run webui/Main.py</code> (port 8501). You need both running. Keep both windows open while making videos.</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">Does MPT actually work? Is the output good?</button>
-        <div class="faq-a"><p>Yes — but set expectations. It doesn't generate AI video from scratch (like Sora). It <strong>assembles</strong> stock footage + AI voiceover + subtitles into a polished slideshow-video. The result looks like a decent YouTube explainer. Perfect for faceless content channels, tutorials, and social media clips. Not suitable for cinematic or creative video projects.</p></div>
+        <button class="faq-q"><span lang="zh">MPT 到底能不能用？效果好吗？</span><span lang="en">Does MPT actually work? Is the output good?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">能用——但要管理好预期。它不会从零生成 AI 视频（像 Sora 那样）。它是把素材片段 + AI 配音 + 字幕<strong>拼接</strong>成一个精致的幻灯片式视频。效果像一个不错的 YouTube 科普视频。适合无出镜内容频道、教程、社媒短视频。不适合创意电影或动画。</span>
+          <span lang="en">Yes — but set expectations. It doesn't generate AI video from scratch (like Sora). It <strong>assembles</strong> stock footage + AI voiceover + subtitles into a polished slideshow-video. The result looks like a decent YouTube explainer. Perfect for faceless content channels, tutorials, and social media clips. Not suitable for cinematic or creative video projects.</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">VPN on or off?</button>
-        <div class="faq-a"><p><strong>Git clone:</strong> VPN ON (GitHub is blocked/unstable from some regions). <strong>pip install:</strong> VPN OFF + use a mirror like <code>https://mirrors.aliyun.com/pypi/simple/</code> — VPN will slow pip to a crawl. <strong>Generating videos:</strong> VPN ON — Pexels stock footage downloads often fail without it.</p></div>
+        <button class="faq-q"><span lang="zh">VPN 什么时候开、什么时候关？</span><span lang="en">VPN on or off?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh"><strong>git clone：</strong>开 VPN（部分地区 GitHub 被墙/不稳定）。<strong>pip install：</strong>关 VPN + 用镜像如 <code>https://mirrors.aliyun.com/pypi/simple/</code>——VPN 会让 pip 慢到怀疑人生。<strong>生成视频：</strong>开 VPN——Pexels 素材下载不走 VPN 经常失败。</span>
+          <span lang="en"><strong>Git clone:</strong> VPN ON (GitHub is blocked/unstable from some regions). <strong>pip install:</strong> VPN OFF + use a mirror like <code>https://mirrors.aliyun.com/pypi/simple/</code> — VPN will slow pip to a crawl. <strong>Generating videos:</strong> VPN ON — Pexels stock footage downloads often fail without it.</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">Do I need a GPU?</button>
-        <div class="faq-a"><p>No. MPT doesn't run local AI models — it calls cloud APIs or stock services. Everything runs on CPU. A basic laptop is sufficient. The "faster-whisper" dependency is only used if you enable Whisper subtitles (off by default).</p></div>
+        <button class="faq-q"><span lang="zh">需要 GPU 吗？</span><span lang="en">Do I need a GPU?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">不需要。MPT 不在本地跑 AI 模型——它调用云端 API 或素材服务。一切都在 CPU 上运行。一个普通笔记本就够。"faster-whisper" 依赖只在开启 Whisper 字幕时才会用到（默认关闭）。</span>
+          <span lang="en">No. MPT doesn't run local AI models — it calls cloud APIs or stock services. Everything runs on CPU. A basic laptop is sufficient. The "faster-whisper" dependency is only used if you enable Whisper subtitles (off by default).</span>
+        </p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q">Can I use the videos commercially?</button>
-        <div class="faq-a"><p>MPT itself is MIT-licensed — no restrictions. Stock footage from Pexels is royalty-free. Edge TTS voices are free for commercial use. If you switch to Azure TTS or OpenAI, check their terms. Bottom line: with the free setup (g4f + Edge TTS + Pexels), you're clear for commercial use.</p></div>
+        <button class="faq-q"><span lang="zh">视频能商用吗？</span><span lang="en">Can I use the videos commercially?</span></button>
+        <div class="faq-a"><p>
+          <span lang="zh">MPT 本身是 MIT 协议——无限制。Pexels 素材可免版税商用。Edge TTS 配音免费商用。如果你改用 Azure TTS 或 OpenAI，请查看各自的服务条款。结论：用免费配置（g4f + Edge TTS + Pexels）生成的视频，商用没问题。</span>
+          <span lang="en">MPT itself is MIT-licensed — no restrictions. Stock footage from Pexels is royalty-free. Edge TTS voices are free for commercial use. If you switch to Azure TTS or OpenAI, check their terms. Bottom line: with the free setup (g4f + Edge TTS + Pexels), you're clear for commercial use.</span>
+        </p></div>
       </div>
     </div>
   </div>
@@ -324,6 +410,23 @@
         }
       });
     });
+
+    // Language toggle
+    (function () {
+      var html = document.documentElement;
+      function setLang(lang) {
+        html.setAttribute('lang', lang);
+        document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+      }
+      document.getElementById('lang-zh').addEventListener('click', function () { setLang('zh'); });
+      document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+      try {
+        var saved = localStorage.getItem('preferred-lang');
+        if (saved === 'zh' || saved === 'en') setLang(saved);
+      } catch (e) {}
+    })();
   </script>
 
 </body>
