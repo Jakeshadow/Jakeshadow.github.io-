@@ -101,10 +101,10 @@
 
     <!-- Hero -->
     <div class="review-hero">
-      <div class="verdict-badge">It Works &mdash; Here's the Proof</div>
+      <div class="verdict-badge">It Works. The Setup Hurts. Here's Everything.</div>
       <h1>MoneyPrinterTurbo: Free AI Video Generator</h1>
-      <p class="hero-subtitle">Turn any text into a video with AI. Open-source, runs on your machine, and the results surprise people. Here's my honest review after hands-on testing.</p>
-      <a href="#results" class="hero-cta">See Results &darr;</a>
+      <p class="hero-subtitle">After 1.5 hours, 4 failed git clones, a moviepy version conflict, and a version that had no GUI — I finally made a video. This is the guide I wish existed when I started.</p>
+      <a href="#setup" class="hero-cta">Skip to Real Setup Guide &darr;</a>
     </div>
 
     <!-- What Is It? -->
@@ -139,7 +139,7 @@
         <tr><th>Criteria</th><th>MoneyPrinterTurbo</th><th>Manual Editing</th></tr>
         <tr><td>Time to produce 1-min video</td><td class="rating">~60 seconds</td><td>~30 minutes</td></tr>
         <tr><td>Visual quality</td><td class="rating">Good (stock footage)</td><td>Depends on skill</td></tr>
-        <tr><td>Voiceover quality</td><td class="rating">Natural (Azure TTS)</td><td>Needs recording/mic</td></tr>
+        <tr><td>Voiceover quality</td><td class="rating">Good (Edge TTS, free)</td><td>Needs recording/mic</td></tr>
         <tr><td>Customization</td><td>Limited to templates</td><td class="rating">Full control</td></tr>
         <tr><td>Cost per video</td><td class="rating">~$0.01 (API fees)</td><td>Time + subscription</td></tr>
       </table>
@@ -148,76 +148,90 @@
     <!-- Is It Free? -->
     <div class="review-section">
       <h2>Is It Free?</h2>
-      <p>The short answer: <strong>yes, the software is 100% free and open-source.</strong> But there's a nuance you need to know before downloading.</p>
+      <p>The short answer: <strong>yes, completely free. Zero API keys required.</strong> If you use v1.1.0 + the g4f config shown above.</p>
 
       <div class="price-cards">
         <div class="price-card free">
-          <h3>The Software</h3>
-          <div class="price-tag">Free</div>
+          <h3>v1.1.0 + g4f + Edge TTS</h3>
+          <div class="price-tag">$0</div>
           <ul>
-            <li>Full source code on GitHub</li>
-            <li>No license fees</li>
-            <li>No watermark</li>
-            <li>Runs on your own machine</li>
+            <li>g4f = free LLM for script writing</li>
+            <li>Edge TTS = free voiceover (built into Windows)</li>
+            <li>Pexels = free stock footage (no API key needed for basic use)</li>
+            <li>No credit card. No registration. No quota limits.</li>
           </ul>
         </div>
         <div class="price-card paid">
-          <h3>External API Keys (optional)</h3>
-          <div class="price-tag">~$5/mo</div>
+          <h3>Upgrades (purely optional)</h3>
+          <div class="price-tag">$0–5/mo</div>
           <ul>
-            <li>Azure TTS for voiceover</li>
-            <li>Pexels/Pixabay for stock footage</li>
-            <li>OpenAI / Suno for music</li>
+            <li>OpenAI key → better script quality</li>
+            <li>Azure Speech key → more voice options</li>
+            <li>Pexels API key → faster downloads, more clips</li>
             <li>Each service has free tiers</li>
           </ul>
         </div>
       </div>
 
       <div class="price-note">
-        <strong>Transparency note:</strong> MPT itself costs nothing. The catch is that some AI services it calls (like voice synthesis) require API keys. However, all of them offer <strong>free tiers</strong> generous enough for personal use. I made my first 50 videos without paying a cent.
+        <strong>Heads-up for v1.2.x users:</strong> The latest version dropped Edge TTS support and requires Azure API keys. If you see a page asking for Azure credentials, you grabbed the wrong version. Use v1.1.0.
       </div>
     </div>
 
     <!-- Quick Setup -->
-    <div class="review-section">
-      <h2>Quick Setup (5 Minutes)</h2>
-      <p>No Docker, no GPU, no complex dependencies. If you can copy-paste into a terminal, you can set this up.</p>
+    <div class="review-section" id="setup">
+      <h2>Real Setup Guide (Took Me 1.5 Hours. You? 10 Minutes.)</h2>
+      <p>Every tutorial says "quick and easy." Here's what actually works, including the parts everyone else skips.</p>
 
       <ol class="step-list">
         <li>
           <div class="step-content">
-            <strong>Clone the repo</strong><br>
-            <code>git clone https://github.com/harry0703/MoneyPrinterTurbo.git</code><br>
-            <code>cd MoneyPrinterTurbo</code>
+            <strong>Pick the RIGHT version</strong><br>
+            The latest release (v1.2.9) is <strong>API-only — no Web UI</strong>. Beginners must use the old version:<br>
+            <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code><br>
+            <code>cd MoneyPrinterTurbo</code><br>
+            <em>VPN ON for git clone. The connection resets constantly without it. Use <code>--depth 1</code> or it'll fail mid-transfer.</em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Install Python dependencies</strong><br>
-            Python 3.10+ required. Then:<br>
-            <code>pip install -r requirements.txt</code>
+            <strong>Install dependencies — with the right flags</strong><br>
+            Python 3.10+ required. <strong>VPN OFF</strong>. Default pip is too slow and WILL timeout. Use Aliyun mirror:<br>
+            <code>pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/</code><br>
+            <em>If you get "moviepy.editor not found": <code>pip install moviepy==1.0.3</code> — v2.0.0 broke the API MPT v1.1.0 depends on.</em>
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Get a free API key</strong><br>
-            Sign up for Azure TTS (free tier gives 500K chars/month). Copy your key and region.
+            <strong>Configure in 30 seconds</strong><br>
+            Copy <code>config.example.toml</code> → <code>config.toml</code>. Change ONE line:<br>
+            <code>llm_provider = "g4f"</code><br>
+            That's it. g4f = free AI. Edge TTS = free voiceover. No API keys. No Azure registration. No credit card.
           </div>
         </li>
         <li>
           <div class="step-content">
-            <strong>Configure the app</strong><br>
-            Rename <code>config.example.toml</code> to <code>config.toml</code> and paste your API key. The defaults work fine for everything else.
-          </div>
-        </li>
-        <li>
-          <div class="step-content">
-            <strong>Launch the web UI</strong><br>
+            <strong>Launch the BACKEND first</strong><br>
+            Open PowerShell #1:<br>
+            <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
             <code>python main.py</code><br>
-            Open <strong>http://localhost:8501</strong> in your browser. Type a topic, click Generate, and watch it build your first video.
+            Wait for <em>"start server, docs: http://127.0.0.1:8080/docs"</em>. Do NOT close this window.
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <strong>Launch the FRONTEND</strong><br>
+            Open PowerShell #2:<br>
+            <code>cd D:\Projects\MoneyPrinterTurbo</code><br>
+            <code>streamlit run .\webui\Main.py</code><br>
+            Browser opens at <strong>http://localhost:8501</strong>. Type a topic, click Generate. <strong>VPN ON</strong> if it hangs at "downloading materials."
           </div>
         </li>
       </ol>
+
+      <div class="price-note">
+        <strong>Why so many steps?</strong> MPT is a community project with rapid version churn. The v1.2.x rewrite dropped the GUI. The pip dependencies are pinned to incompatible versions. No one documented this — until now. This guide turns a 1.5-hour debugging session into a 10-minute copy-paste job.
+      </div>
     </div>
 
     <!-- Resources -->
@@ -228,16 +242,16 @@
           <span><span class="res-title">GitHub Repository</span><br><span class="res-desc">Source code, issues, and community discussions</span></span>
           <span>&rarr;</span>
         </a></li>
+        <li><a href="https://github.com/harry0703/MoneyPrinterTurbo/releases/tag/v1.1.0" target="_blank" rel="noopener">
+          <span><span class="res-title">v1.1.0 Release (Recommended)</span><br><span class="res-desc">The last version with a Web UI — use this if you want a GUI</span></span>
+          <span>&rarr;</span>
+        </a></li>
         <li><a href="https://github.com/harry0703/MoneyPrinterTurbo/blob/main/README-en.md" target="_blank" rel="noopener">
-          <span><span class="res-title">Official English README</span><br><span class="res-desc">Installation guide and configuration reference</span></span>
+          <span><span class="res-title">Official English README</span><br><span class="res-desc">Installation reference (but follow our guide above for fewer headaches)</span></span>
           <span>&rarr;</span>
         </a></li>
-        <li><a href="https://azure.microsoft.com/en-us/products/ai-services/ai-speech" target="_blank" rel="noopener">
-          <span><span class="res-title">Azure Text-to-Speech</span><br><span class="res-desc">Get your free API key here (500K chars/month free)</span></span>
-          <span>&rarr;</span>
-        </a></li>
-        <li><a href="https://www.pexels.com/api/" target="_blank" rel="noopener">
-          <span><span class="res-title">Pexels API</span><br><span class="res-desc">Free stock footage API used by MPT</span></span>
+        <li><a href="https://www.pexels.com/" target="_blank" rel="noopener">
+          <span><span class="res-title">Pexels</span><br><span class="res-desc">Free stock footage — register for an API key if downloads are slow</span></span>
           <span>&rarr;</span>
         </a></li>
       </ul>
@@ -248,33 +262,43 @@
       <h2>Frequently Asked Questions</h2>
 
       <div class="faq-item">
+        <button class="faq-q">Which version should I use? v1.1.0 or v1.2.x?</button>
+        <div class="faq-a"><p><strong>v1.1.0 for beginners.</strong> It has a Streamlit Web UI (point-and-click), built-in Edge TTS (free voiceover), and g4f support (free AI). v1.2.x is a complete rewrite — FastAPI-only, no GUI, requires external API keys. Great for developers building pipelines; terrible for someone who just wants to make a video.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Why does git clone keep failing?</button>
+        <div class="faq-a"><p>The full repo is large. Two fixes: (1) Use <code>--depth 1</code> for a shallow clone — skips git history, reduces download by 80%. (2) Turn on your VPN if you're outside the US — GitHub connections from some regions reset frequently. The magic command: <code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code></p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">ModuleNotFoundError: No module named 'moviepy.editor'</button>
+        <div class="faq-a"><p>moviepy 2.0 removed the <code>moviepy.editor</code> module that MPT v1.1.0 depends on. Fix: <code>pip install moviepy==1.0.3</code>. This happens because <code>requirements.txt</code> doesn't pin an exact version.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Why do I need two terminal windows?</button>
+        <div class="faq-a"><p>MPT v1.1.0 splits the backend (FastAPI, handles video rendering) and frontend (Streamlit, the UI you see) into separate processes. The backend runs on <code>python main.py</code> (port 8080), the frontend on <code>streamlit run webui/Main.py</code> (port 8501). You need both running. Keep both windows open while making videos.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Does MPT actually work? Is the output good?</button>
+        <div class="faq-a"><p>Yes — but set expectations. It doesn't generate AI video from scratch (like Sora). It <strong>assembles</strong> stock footage + AI voiceover + subtitles into a polished slideshow-video. The result looks like a decent YouTube explainer. Perfect for faceless content channels, tutorials, and social media clips. Not suitable for cinematic or creative video projects.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">VPN on or off?</button>
+        <div class="faq-a"><p><strong>Git clone:</strong> VPN ON (GitHub is blocked/unstable from some regions). <strong>pip install:</strong> VPN OFF + use a mirror like <code>https://mirrors.aliyun.com/pypi/simple/</code> — VPN will slow pip to a crawl. <strong>Generating videos:</strong> VPN ON — Pexels stock footage downloads often fail without it.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do I need a GPU?</button>
+        <div class="faq-a"><p>No. MPT doesn't run local AI models — it calls cloud APIs or stock services. Everything runs on CPU. A basic laptop is sufficient. The "faster-whisper" dependency is only used if you enable Whisper subtitles (off by default).</p></div>
+      </div>
+
+      <div class="faq-item">
         <button class="faq-q">Can I use the videos commercially?</button>
-        <div class="faq-a"><p>Yes. MPT itself is MIT-licensed, so the code has no restrictions. However, check the license of the stock footage (Pexels/Pixabay) and the TTS voice you use. Most are fine for commercial use, but read their terms to be safe.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Does it need a GPU?</button>
-        <div class="faq-a"><p>No. MPT doesn't run local AI models for video generation — it composes videos from existing stock footage. Everything runs on CPU. A basic laptop is sufficient.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">What languages does it support?</button>
-        <div class="faq-a"><p>MPT supports 30+ languages for voiceover through Azure TTS. The UI is available in Chinese and English. Video subtitles can be generated in any language Azure TTS supports.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">Is there a hosted version I can try without installing?</button>
-        <div class="faq-a"><p>Not officially. The project is designed to run locally. There are third-party hosted forks, but I don't recommend them — you'd be giving your API keys to a stranger. Installing locally takes 5 minutes and keeps everything under your control.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">How is this different from Sora / Runway / Pika?</button>
-        <div class="faq-a"><p>MPT doesn't generate AI video from scratch (like Sora's text-to-video). Instead, it <strong>assembles</strong> videos by combining stock footage, AI voiceover, subtitles, and music into a polished final product. Think of it as an automated video editor rather than an AI video generator. The output is less "creative" but much faster, cheaper, and more reliable for informational content.</p></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q">What platform does it run on?</button>
-        <div class="faq-a"><p>Windows, macOS, and Linux. Python 3.10+ is the only hard requirement. The web UI runs in any modern browser.</p></div>
+        <div class="faq-a"><p>MPT itself is MIT-licensed — no restrictions. Stock footage from Pexels is royalty-free. Edge TTS voices are free for commercial use. If you switch to Azure TTS or OpenAI, check their terms. Bottom line: with the free setup (g4f + Edge TTS + Pexels), you're clear for commercial use.</p></div>
       </div>
     </div>
   </div>
