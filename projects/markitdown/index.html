@@ -114,6 +114,7 @@
       <div class="hero-nav">
         <a href="#batch">Batch Processing</a>
         <a href="#errors">Error Fixes</a>
+        <a href="#cleanup">PDF Cleanup</a>
         <a href="#docker">Docker Deploy</a>
         <a href="#llm">LLM Comparison</a>
       </div>
@@ -200,9 +201,88 @@ Path(<span class="code-var">OUTPUT_DIR</span>).mkdir(exist_ok=<span class="code-
       </div>
     </div>
 
+    <!-- PDF Cleanup -->
+    <div class="guide-section" id="cleanup">
+      <h2>3. PDF Cleanup Script</h2>
+      <p class="section-intro">MarkItDown extracts text from PDFs, but the output is <strong>raw</strong>. Every real-world PDF has the same problems: duplicate sentences, CID markers <code>(cid:1)</code>, zero structure. This script fixes all of them in one pass.</p>
+
+      <h3>What goes wrong with PDFs</h3>
+      <p>Every PDF I've processed has the same four problems. Here's what they look like:</p>
+      <table class="bug-table">
+        <tr><th>Problem</th><th>Example</th></tr>
+        <tr><td>&#128257; <strong>Duplicate text</strong></td><td>Every sentence appears twice — PDF text layer + embedded metadata both get extracted.</td></tr>
+        <tr><td>&#128264; <strong>CID noise</strong></td><td><code>(cid:1)</code> <code>(cid:2)</code> <code>(cid:3)</code> — font glyph markers from PDF internals, meaningless in output.</td></tr>
+        <tr><td>&#128196; <strong>Flat structure</strong></td><td>No headings, no hierarchy. Section titles look exactly like body text.</td></tr>
+        <tr><td>&#9988; <strong>Broken lines</strong></td><td>Sentences split mid-phrase by PDF layout boxes, not by meaning.</td></tr>
+      </table>
+
+      <h3>The fix: one post-processing script</h3>
+      <p>Run this after MarkItDown. It handles all four problems — remove CID tokens, deduplicate, detect section headings, and compress blank lines.</p>
+      <pre><code><span class="code-keyword">import</span> re
+
+<span class="code-keyword">with</span> <span class="code-builtin">open</span>(<span class="code-string">"input.md"</span>, <span class="code-string">"r"</span>, encoding=<span class="code-string">"utf-8"</span>) <span class="code-keyword">as</span> f:
+    <span class="code-var">lines</span> = f.readlines()
+
+<span class="code-comment"># 1. Strip CID markers: (cid:1), (cid:2), etc.</span>
+<span class="code-var">lines</span> = [re.sub(<span class="code-string">r'\(cid:\d+\)\s*'</span>, <span class="code-string">''</span>, l).strip() <span class="code-keyword">for</span> l <span class="code-keyword">in</span> <span class="code-var">lines</span>]
+
+<span class="code-comment"># 2. Dedupe: remove identical consecutive lines</span>
+<span class="code-var">deduped</span> = []
+<span class="code-var">prev</span> = <span class="code-string">""</span>
+<span class="code-keyword">for</span> l <span class="code-keyword">in</span> <span class="code-var">lines</span>:
+    <span class="code-keyword">if</span> l != <span class="code-var">prev</span>:
+        <span class="code-var">deduped</span>.append(l)
+    <span class="code-var">prev</span> = l
+
+<span class="code-comment"># 3. Detect headers: time-stamped segments get ###</span>
+<span class="code-comment">#    Short standalone Chinese lines get **bold**</span>
+<span class="code-var">result</span> = []
+<span class="code-keyword">for</span> l <span class="code-keyword">in</span> <span class="code-var">deduped</span>:
+    <span class="code-keyword">if</span> re.search(<span class="code-string">r'\[\d{2}:\d{2}[～~-]\d{2}:\d{2}\]'</span>, l):
+        <span class="code-var">result</span>.append(<span class="code-string">"### "</span> + l)
+    <span class="code-keyword">elif</span> re.match(<span class="code-string">r'^[一-鿿\w]{2,18}$'</span>, l):
+        <span class="code-var">result</span>.append(<span class="code-string">"**"</span> + l + <span class="code-string">"**"</span>)
+    <span class="code-keyword">else</span>:
+        <span class="code-var">result</span>.append(l)
+
+<span class="code-comment"># 4. Collapse multiple blank lines into one</span>
+<span class="code-var">final</span> = []
+<span class="code-var">blank</span> = <span class="code-keyword">False</span>
+<span class="code-keyword">for</span> l <span class="code-keyword">in</span> <span class="code-var">result</span>:
+    <span class="code-keyword">if</span> l == <span class="code-string">""</span>:
+        <span class="code-keyword">if</span> <span class="code-keyword">not</span> <span class="code-var">blank</span>: <span class="code-var">final</span>.append(l)
+        <span class="code-var">blank</span> = <span class="code-keyword">True</span>
+    <span class="code-keyword">else</span>:
+        <span class="code-var">final</span>.append(l)
+        <span class="code-var">blank</span> = <span class="code-keyword">False</span>
+
+<span class="code-keyword">with</span> <span class="code-builtin">open</span>(<span class="code-string">"output.md"</span>, <span class="code-string">"w"</span>, encoding=<span class="code-string">"utf-8"</span>) <span class="code-keyword">as</span> f:
+    f.write(<span class="code-string">"\n"</span>.join(<span class="code-var">final</span>))
+
+<span class="code-builtin">print</span>(<span class="code-string">f"Done. {</span><span class="code-builtin">len</span>(<span class="code-var">lines</span>)<span class="code-string">} -> {</span><span class="code-builtin">len</span>(<span class="code-var">final</span>)<span class="code-string">} lines"</span>)</code></pre>
+
+      <div class="tip-box">
+        <strong>&#128161; Tip:</strong> This script alone cut a real 1,766-line PDF dump down to 1,293 lines — removing ~500 duplicates, all CID markers, and adding structural headings.
+      </div>
+
+      <h3>When the script isn't enough: use an LLM</h3>
+      <p>For complex PDFs — multi-column layouts, mixed languages, heavy tables — regex cleanup only goes so far. Feed the raw MarkItDown output to any LLM with this prompt:</p>
+      <pre><code><span class="code-comment">You are a document cleanup assistant. Given raw MarkItDown output:</span>
+<span class="code-comment">1. Remove all duplicate sentences (even near-duplicates)</span>
+<span class="code-comment">2. Remove transcription noise: CID markers, page numbers, watermarks</span>
+<span class="code-comment">3. Add proper Markdown headings (##, ###) by detecting section breaks</span>
+<span class="code-comment">4. Merge broken sentences that PDF layout split across lines</span>
+<span class="code-comment">5. Keep ALL factual content — don't summarize, only clean</span>
+<span class="code-comment">6. Output valid Markdown</span>
+
+<span class="code-comment">Here is the raw text:</span>
+[paste MarkItDown output]</code></pre>
+      <p>This one-shot prompt produces publishable Markdown from even the messiest PDFs. Use it for critical documents where quality matters.</p>
+    </div>
+
     <!-- Docker Deployment -->
     <div class="guide-section" id="docker">
-      <h2>3. Docker Deployment</h2>
+      <h2>4. Docker Deployment</h2>
       <p class="section-intro">Production-ready setup with FastAPI + MarkItDown in Docker. Accepts file uploads, returns Markdown. No API keys needed.</p>
 
       <div class="tab-bar">
@@ -267,7 +347,7 @@ Path(<span class="code-var">OUTPUT_DIR</span>).mkdir(exist_ok=<span class="code-
 
     <!-- LLM Comparison -->
     <div class="guide-section" id="llm">
-      <h2>4. LLM Image Description Comparison</h2>
+      <h2>5. LLM Image Description Comparison</h2>
       <p class="section-intro">MarkItDown uses an LLM to describe images embedded in documents. Which model gives the best descriptions? I tested GPT-4o, Claude 4 Sonnet, and Gemini 2.5 Pro on the same set of 10 images from real-world documents.</p>
 
       <table class="llm-table">
