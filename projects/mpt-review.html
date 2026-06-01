@@ -11,9 +11,6 @@
   <link rel="stylesheet" href="../css/style.css">
   <style>
     body { font-family: var(--font-zh), var(--font-en); }
-    .project-detail { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
-    .back-link { display: inline-block; margin: 28px 0 20px; font-size: 0.85rem; color: var(--color-text-secondary); }
-    .back-link:hover { color: var(--color-accent); }
 
     /* Lang toggle */
     .lang-toggle-bar { text-align: right; margin-bottom: -12px; }
@@ -23,17 +20,7 @@
     .lang-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
     .lang-btn:hover:not(.active) { border-color: var(--color-accent); color: var(--color-accent); }
 
-    /* Bilingual visibility */
-    html[lang="zh"] [lang="en"] { display: none; }
-    html[lang="en"] [lang="zh"] { display: none; }
-    html[lang="en"] [lang="en"] { display: inline; }
-    html[lang="zh"] [lang="zh"] { display: inline; }
-    /* block elements need block display */
-    html[lang="en"] [lang="en"].block, html[lang="zh"] [lang="zh"].block { display: block; }
-    html[lang="en"] li[lang="en"] { display: list-item; }
-    html[lang="zh"] li[lang="zh"] { display: list-item; }
-    html[lang="en"] tr[lang="en"] { display: table-row; }
-    html[lang="zh"] tr[lang="zh"] { display: table-row; }
+    /* Bilingual visibility — now in shared ../css/style.css */
 
     /* Hero */
     .review-hero { text-align: center; padding: 40px 0 32px; border-bottom: 1px solid var(--color-border); }
@@ -116,6 +103,50 @@
       .review-hero h1 { font-size: 1.2rem; }
       .project-detail { padding: 0 18px 48px; }
       .review-section { padding: 28px 0; }
+    }
+
+    /* === Bug Catalog === */
+    .bug-filter { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .bug-filter-btn { background: none; border: 1px solid var(--color-border); cursor: pointer; color: var(--color-text-secondary); font-size: 0.82rem; font-family: inherit; padding: 6px 16px; border-radius: 100px; transition: all 0.2s; }
+    .bug-filter-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+    .bug-filter-btn:hover:not(.active) { border-color: var(--color-accent); color: var(--color-accent); }
+
+    .cat-header { font-size: 0.85rem; font-weight: 700; color: var(--color-text); margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border); display: flex; align-items: baseline; gap: 8px; }
+    .cat-header .cat-count { font-weight: 400; color: var(--color-text-secondary); font-size: 0.76rem; }
+
+    .bug-item { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+    .bug-q { width: 100%; background: none; border: none; padding: 14px 16px; font-size: 0.9rem; text-align: left; cursor: pointer; color: var(--color-text); display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: inherit; }
+    .bug-q:hover { background: rgba(0,0,0,0.02); }
+    .bug-q::after { content: '+'; font-size: 1.1rem; color: var(--color-text-secondary); flex-shrink: 0; }
+    .bug-q.open::after { content: '\2212'; }
+    .bug-q .bug-num { font-family: var(--font-en); font-weight: 700; color: var(--color-accent); font-size: 0.82rem; min-width: 28px; }
+    .bug-q .bug-title { flex: 1; font-weight: 600; }
+    .bug-meta { display: flex; gap: 6px; flex-shrink: 0; }
+    .bug-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+    .bug-badge.beginner { background: #e8f5e9; color: #2d6a4f; }
+    .bug-badge.programmer { background: #e3f2fd; color: #1565c0; }
+    .bug-badge.both { background: #f3e5f5; color: #7b1fa2; }
+    .bug-badge.china { background: #fff3e0; color: #e65100; }
+    .bug-badge.win { background: #fce4ec; color: #c62828; }
+
+    .bug-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.7; }
+    .bug-a.open { max-height: 800px; }
+    .bug-a-inner { padding: 0 16px 16px; }
+    .bug-a-inner .field { margin-bottom: 10px; }
+    .bug-a-inner .field-label { font-weight: 700; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text); margin-bottom: 2px; }
+    .bug-a-inner code { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 4px; padding: 1px 6px; font-size: 0.8rem; color: var(--color-accent); word-break: break-all; }
+    .bug-a-inner pre { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 6px; padding: 12px 14px; overflow-x: auto; margin: 6px 0; }
+    .bug-a-inner pre code { border: none; padding: 0; color: var(--color-text); font-size: 0.78rem; line-height: 1.5; display: block; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85rem; }
+    .summary-table th { text-align: left; padding: 8px 12px; background: var(--color-card-bg); font-weight: 600; font-size: 0.78rem; color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+    .summary-table td { padding: 8px 12px; border: 1px solid var(--color-border); color: var(--color-text-secondary); }
+    .summary-table td code { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 3px; padding: 1px 5px; font-size: 0.78rem; color: var(--color-accent); }
+
+    @media (max-width: 640px) {
+      .bug-q { font-size: 0.82rem; padding: 12px; }
+      .bug-meta { display: none; }
+      .bug-a.open { max-height: 1200px; }
     }
   </style>
 </head>
@@ -394,8 +425,528 @@
         </p></div>
       </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- 18 Real-World Installation Bugs             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="review-section" id="bugs">
+      <h2><span lang="zh">18 个真实安装坑位（附修复）</span><span lang="en">18 Real-World Installation Bugs (With Fixes)</span></h2>
+      <p>
+        <span lang="zh">我在 Windows 11（中国网络环境）上花了 ~4 小时才让 MPT v1.1.0 生成出一个视频。<strong>每一步都踩了坑。</strong>以下按类别整理了全部 18 个 bug——含症状、根因、修复代码。</span>
+        <span lang="en">I spent ~4 hours getting MPT v1.1.0 to generate one video on Windows 11 (China). <strong>Every single step hit an issue.</strong> Below are all 18 bugs — with symptoms, root causes, and fix code — organized by category.</span>
+      </p>
+
+      <!-- Audience path overview -->
+      <table class="summary-table" style="margin-bottom:24px;">
+        <tr><th></th><th><span lang="zh">小白路径</span><span lang="en">Beginner Path</span></th><th><span lang="zh">程序员路径</span><span lang="en">Programmer Path</span></th></tr>
+        <tr><td><strong>MPT <span lang="zh">版本</span><span lang="en">Version</span></strong></td><td>v1.1.0 (Streamlit Web UI)</td><td>v1.2.9 (API-only, CLI)</td></tr>
+        <tr><td><strong>LLM</strong></td><td>Qwen (DashScope/Bailian) — <span lang="zh">免费、国内直连</span><span lang="en">free, China-direct</span></td><td><span lang="zh">任意 OpenAI 兼容服务</span><span lang="en">Any OpenAI-compatible provider</span></td></tr>
+        <tr><td><strong><span lang="zh">界面</span><span lang="en">Interface</span></strong></td><td><span lang="zh">浏览器 localhost:8501</span><span lang="en">Browser at localhost:8501</span></td><td>curl / <span lang="zh">自定义脚本</span><span lang="en">custom scripts</span></td></tr>
+        <tr><td><strong><span lang="zh">预计耗时（修复后）</span><span lang="en">Expected Time (after fixes)</span></strong></td><td>~30 min</td><td>~15 min</td></tr>
+        <tr><td><strong><span lang="zh">实际耗时（中国）</span><span lang="en">Reality (China)</span></strong></td><td style="color:var(--color-accent);font-weight:700;">2–4 <span lang="zh">小时</span><span lang="en">hours</span></td><td style="color:var(--color-accent);font-weight:700;">1–2 <span lang="zh">小时</span><span lang="en">hours</span></td></tr>
+      </table>
+
+      <!-- Filter -->
+      <div class="bug-filter">
+        <button class="bug-filter-btn active" data-filter="all"><span lang="zh">全部 18</span><span lang="en">All 18</span></button>
+        <button class="bug-filter-btn" data-filter="china"><span class="bug-badge china" style="font-size:0.7rem;">CHINA</span> <span lang="zh">国内专属 5</span><span lang="en">China-only 5</span></button>
+        <button class="bug-filter-btn" data-filter="global"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;font-size:0.7rem;">GLOBAL</span> <span lang="zh">全球通用 12</span><span lang="en">Global 12</span></button>
+        <button class="bug-filter-btn" data-filter="win"><span class="bug-badge win" style="font-size:0.7rem;">WINDOWS</span> <span lang="zh">Windows专属 1</span><span lang="en">Windows-only 1</span></button>
+      </div>
+
+      <!-- ═══════════ Category 1: Network & Environment ═══════════ -->
+      <div class="cat-header" data-cat="network">
+        <span lang="zh">🌐 网络与环境</span><span lang="en">🌐 Network & Environment</span>
+        <span class="cat-count">5 bugs</span>
+      </div>
+
+      <!-- Bug 1 -->
+      <div class="bug-item" data-region="china">
+        <button class="bug-q">
+          <span class="bug-num">#1</span>
+          <span class="bug-title"><span lang="zh">Git Clone 反复失败</span><span lang="en">Git Clone Fails Repeatedly</span></span>
+          <span class="bug-meta"><span class="bug-badge china">CHINA</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>RPC failed</code>, <code>early EOF</code>, <code>fetch-pack unexpected disconnect</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">GitHub 在国内被限速/阻断；完整仓库体积较大</span>
+            <span lang="en">GitHub blocked/throttled in China; full repo is large</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <pre><code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git</code></pre>
+            <span lang="zh">浅克隆 + 指定分支，跳过全部历史记录，减少约 80% 下载量</span>
+            <span lang="en">Shallow clone + specific branch, skips all history, ~80% less data</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 2 -->
+      <div class="bug-item" data-region="china">
+        <button class="bug-q">
+          <span class="bug-num">#2</span>
+          <span class="bug-title"><span lang="zh">pip install 超时</span><span lang="en">pip install Timeout</span></span>
+          <span class="bug-meta"><span class="bug-badge china">CHINA</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>pip install -r requirements.txt</code> <span lang="zh">卡住不动或超时</span><span lang="en">hangs or times out</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">清华镜像限速</span><span lang="en">Tsinghua mirror throttling</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <pre><code>pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/</code></pre>
+            <span lang="zh">换用阿里云镜像</span><span lang="en">Switch to Aliyun mirror</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 3 -->
+      <div class="bug-item" data-region="china">
+        <button class="bug-q">
+          <span class="bug-num">#3</span>
+          <span class="bug-title"><span lang="zh">VPN 开关地狱</span><span lang="en">VPN Toggle Hell</span></span>
+          <span class="bug-meta"><span class="bug-badge china">CHINA</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <span lang="zh">GitHub/Pexels/Edge TTS 需要 VPN 开，pip 镜像需要 VPN 关——反复横跳</span>
+            <span lang="en">Need VPN ON for GitHub/Pexels/Edge TTS, VPN OFF for pip mirrors — constant toggling</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">分流路由问题：国内镜像不走 VPN 才能快，海外服务不走 VPN 连不上</span>
+            <span lang="en">Split routing: China mirrors need direct connection, overseas services need VPN</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">使用分隧道 VPN（Clash/V2Ray）；没有的话手动切换：</span>
+            <span lang="en">Use split-tunnel VPN (Clash/V2Ray); if unavailable, toggle manually:</span><br>
+            <span lang="zh">VPN 开 → git clone / Pexels 素材 / Edge TTS</span><span lang="en">VPN ON → git clone / Pexels / Edge TTS</span><br>
+            <span lang="zh">VPN 关 → pip install（镜像源）</span><span lang="en">VPN OFF → pip install (mirrors)</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 8 -->
+      <div class="bug-item" data-region="china">
+        <button class="bug-q">
+          <span class="bug-num">#8</span>
+          <span class="bug-title"><span lang="zh">Edge TTS 403 被墙</span><span lang="en">edge-tts 403 Forbidden (China)</span></span>
+          <span class="bug-meta"><span class="bug-badge china">CHINA</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>WSServerHandshakeError: 403, message='Invalid response status'</code> <span lang="zh">来自 <code>speech.platform.bing.com</code></span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">微软 Bing 语音服务在国内被墙</span><span lang="en">Microsoft Bing Speech service is blocked in China</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">必须开 VPN。同时升级 edge-tts：</span><span lang="en">VPN ON required. Also upgrade edge-tts:</span>
+            <pre><code>pip install edge-tts --upgrade</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 18 -->
+      <div class="bug-item" data-region="china">
+        <button class="bug-q">
+          <span class="bug-num">#18</span>
+          <span class="bug-title"><span lang="zh">Whisper 模型下载卡死</span><span lang="en">Whisper Model Download Hangs (China)</span></span>
+          <span class="bug-meta"><span class="bug-badge china">CHINA</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <span lang="zh">字幕功能回退到 Whisper，从 Hugging Face 下载 <code>large-v3</code> 模型（~3GB）——国内极慢</span>
+            <span lang="en">Subtitle fallback to Whisper downloads <code>large-v3</code> model (~3GB) from Hugging Face — extremely slow in China</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">Edge TTS 字幕创建因 SentenceBoundary-only chunks + 匹配逻辑不兼容而失败，回退到 Whisper；Hugging Face 在国内被限速</span>
+            <span lang="en">Edge TTS subtitle creation fails (SentenceBoundary-only + matching incompatibility), falling back to Whisper; HF throttled in China</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 Streamlit 中取消勾选"启用字幕"，完全跳过 Whisper。或通过 HF 镜像站预下载模型</span>
+            <span lang="en">Uncheck "Enable Subtitles" in Streamlit to skip Whisper entirely. Or pre-download model via HF mirror</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Category 2: Version & Dependency Hell ═══════════ -->
+      <div class="cat-header" data-cat="version">
+        <span lang="zh">📦 版本与依赖地狱</span><span lang="en">📦 Version & Dependency Hell</span>
+        <span class="cat-count">2 bugs</span>
+      </div>
+
+      <!-- Bug 4 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#4</span>
+          <span class="bug-title"><span lang="zh">v1.2.9 没有 Web 界面</span><span lang="en">v1.2.9 Has No Web GUI</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <span lang="zh">装了最新版，只有 <code>/docs</code> API 页面，没有 Streamlit 界面</span>
+            <span lang="en">Installed latest, only <code>/docs</code> API page, no Streamlit UI</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">v1.2.x 移除了 Streamlit Web UI，纯 API 版本</span>
+            <span lang="en">v1.2.x dropped the Streamlit Web UI, API-only</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <pre><code>git checkout v1.1.0</code></pre>
+            <span lang="zh">v1.1.0 是最后一个有图形界面的版本</span><span lang="en">v1.1.0 is the last version with a Web UI</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 5 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#5</span>
+          <span class="bug-title"><span lang="zh">moviepy v2.0.0 不兼容</span><span lang="en">moviepy v2.0.0 Breaks MPT</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>ModuleNotFoundError: No module named 'moviepy.editor'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">moviepy v2.0.0 移除了 MPT v1.1.0 依赖的 <code>moviepy.editor</code> 模块</span>
+            <span lang="en">moviepy v2.0.0 removed the <code>moviepy.editor</code> module that MPT v1.1.0 depends on</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <pre><code>pip install moviepy==1.0.3</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Category 3: moviepy Breaking Changes ═══════════ -->
+      <div class="cat-header" data-cat="moviepy">
+        <span lang="zh">🎬 moviepy API 变更</span><span lang="en">🎬 moviepy Breaking Changes</span>
+        <span class="cat-count">2 bugs</span>
+      </div>
+
+      <!-- Bug 14 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#14</span>
+          <span class="bug-title"><span lang="zh">moviepy 重命名 temp_audiofile_path</span><span lang="en">moviepy Renamed temp_audiofile_path</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>write_videofile() got an unexpected keyword argument 'temp_audiofile_path'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">moviepy v1.0.3 参数名是 <code>temp_audiofile</code> 而非 <code>temp_audiofile_path</code></span>
+            <span lang="en">moviepy v1.0.3 uses <code>temp_audiofile</code> not <code>temp_audiofile_path</code></span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>app/services/video.py</code> 中全局替换</span><span lang="en">Replace all occurrences in <code>app/services/video.py</code></span>
+            <pre><code>temp_audiofile_path  →  temp_audiofile</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 15 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#15</span>
+          <span class="bug-title"><span lang="zh">FFmpeg 无法确定输出格式</span><span lang="en">FFmpeg Can't Determine Output Format</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>Unable to choose an output format for 'D:\...\tasks\&lt;uuid&gt;'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh"><code>temp_audiofile</code> 被设为目录路径而非文件路径（缺少扩展名）</span>
+            <span lang="en"><code>temp_audiofile</code> was set to a directory path instead of a file path with extension</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>video.py</code> 第 109、256 行</span><span lang="en">In <code>video.py</code> lines 109, 256</span>
+            <pre><code>temp_audiofile=output_dir
+→ temp_audiofile=os.path.join(output_dir, "temp_audio.m4a")</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Category 4: edge-tts Breaking Changes ═══════════ -->
+      <div class="cat-header" data-cat="edgetts">
+        <span lang="zh">🔊 edge-tts API 重大变更（5连坑）</span><span lang="en">🔊 edge-tts Breaking Changes (5-in-a-row)</span>
+        <span class="cat-count">5 bugs</span>
+      </div>
+
+      <!-- Bug 9 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#9</span>
+          <span class="bug-title"><span lang="zh">edge-tts 移除 mktimestamp</span><span lang="en">edge-tts Removed mktimestamp</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>ImportError: cannot import name 'mktimestamp' from 'edge_tts.submaker'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">edge-tts 升级后移除了 <code>mktimestamp</code> 工具函数</span>
+            <span lang="en">edge-tts package upgraded and removed the <code>mktimestamp</code> utility function</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>app/services/voice.py</code> 第5行添加本地实现：</span><span lang="en">Add local implementation to <code>app/services/voice.py</code> line 5:</span>
+            <pre><code>def mktimestamp(seconds: float) -> str:
+    hrs = int(seconds // 3600)
+    mins = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    millis = int((seconds % 1) * 1000)
+    return f"{hrs:02d}:{mins:02d}:{secs:02d}.{millis:03d}"</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 10 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#10</span>
+          <span class="bug-title"><span lang="zh">edge-tts subs → cues 重命名</span><span lang="en">edge-tts Renamed subs to cues</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>'SubMaker' object has no attribute 'subs'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">edge-tts 将 <code>.subs</code> 重命名为 <code>.cues</code>（返回 Subtitle 对象列表而非字符串）</span>
+            <span lang="en">edge-tts renamed <code>.subs</code> → <code>.cues</code> (list of Subtitle objects instead of strings)</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>voice.py</code>：</span><span lang="en">In <code>voice.py</code>:</span>
+            <pre><code># Line 1017:
+sub_maker.subs  →  sub_maker.cues
+
+# Line 1087: replace zip(sub_maker.offset, sub_maker.subs)
+# with iteration over sub_maker.cues, using
+# .content for text and .start/.end.total_seconds() for timestamps</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 11 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#11</span>
+          <span class="bug-title"><span lang="zh">edge-tts 移除 offset 属性</span><span lang="en">edge-tts Removed offset Attribute</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>'SubMaker' object has no attribute 'offset'</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">edge-tts 移除了 <code>.offset</code>，时间戳现在在 <code>Subtitle.start</code> / <code>.end</code>（timedelta 对象）</span>
+            <span lang="en">edge-tts removed <code>.offset</code>, timestamps now in <code>Subtitle.start</code>/<code>.end</code> as timedelta objects</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>voice.py</code> 的 <code>get_audio_duration()</code>（约1125行）：</span><span lang="en">In <code>get_audio_duration()</code> (~line 1125):</span>
+            <pre><code>def get_audio_duration(sub_maker):
+    if not sub_maker.cues:
+        return 0.0
+    return sub_maker.cues[-1].end.total_seconds()</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 12 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#12</span>
+          <span class="bug-title"><span lang="zh">edge-tts create_sub → feed</span><span lang="en">edge-tts Changed create_sub to feed</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>sub_maker.cues is None</code> <span lang="zh">（流式结束后无字幕填充）</span><span lang="en">(no cues populated after streaming)</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">旧 API：<code>sub_maker.create_sub((offset, duration), text)</code>。新 API：<code>sub_maker.feed(chunk)</code>——直接传入原始 chunk 字典</span>
+            <span lang="en">Old API: <code>sub_maker.create_sub((offset, duration), text)</code>. New API: <code>sub_maker.feed(chunk)</code> — takes raw chunk dict</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">在 <code>voice.py</code> <code>_do()</code> 函数（约1013行）：</span><span lang="en">In <code>voice.py</code> <code>_do()</code> function (~line 1013):</span>
+            <pre><code># Old:
+sub_maker.create_sub((chunk["offset"], chunk["duration"]), chunk["text"])
+# New:
+sub_maker.feed(chunk)</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 13 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#13</span>
+          <span class="bug-title"><span lang="zh">edge-tts 丢弃 WordBoundary 事件</span><span lang="en">edge-tts Dropped WordBoundary Chunks</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>sub_maker.cues is None</code> <span lang="zh">（即使 <code>feed()</code> 修好后仍然为空）</span><span lang="en">(still empty even after <code>feed()</code> fix)</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">新版 edge-tts 只发送 <code>SentenceBoundary</code> 事件（不发 <code>WordBoundary</code>）。条件 <code>chunk["type"] == "WordBoundary"</code> 永远不成立</span>
+            <span lang="en">New edge-tts only emits <code>SentenceBoundary</code> chunks (not <code>WordBoundary</code>). The condition never matches</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">修改条件同时接受两种事件（<code>voice.py</code> 第1012行）：</span><span lang="en">Change condition to accept both (voice.py line 1012):</span>
+            <pre><code># Old:
+elif chunk["type"] == "WordBoundary":
+# New:
+elif chunk["type"] in ("WordBoundary", "SentenceBoundary"):</code></pre>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Category 5: LLM & API Configuration ═══════════ -->
+      <div class="cat-header" data-cat="llm">
+        <span lang="zh">🤖 LLM 与 API 配置</span><span lang="en">🤖 LLM & API Configuration</span>
+        <span class="cat-count">2 bugs</span>
+      </div>
+
+      <!-- Bug 6 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#6</span>
+          <span class="bug-title"><span lang="zh">g4f 免费供应商全部失效</span><span lang="en">g4f Free Providers All Dead</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>RetryProviderError: RetryProvider failed</code> — <span lang="zh">所有免费 GPT 供应商全部报错</span><span lang="en">all free GPT providers return errors</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">免费 g4f 供应商不稳定/无人维护/被屏蔽；还缺依赖：<code>curl_cffi</code>, <code>undetected_chromedriver</code>, <code>platformdirs</code></span>
+            <span lang="en">Free g4f providers are unstable/unmaintained/blocked; missing deps: <code>curl_cffi</code>, <code>undetected_chromedriver</code>, <code>platformdirs</code></span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">切换到 Qwen（DashScope）——免费额度，国内直连。或者 Moonshot、任意 OpenAI 兼容服务</span>
+            <span lang="en">Switch to Qwen (DashScope) — free quota, China direct. Or Moonshot, or any OpenAI-compatible provider</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 7 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#7</span>
+          <span class="bug-title"><span lang="zh">Moonshot 余额不足</span><span lang="en">Moonshot Insufficient Balance</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>Error code: 429 - account suspended due to insufficient balance</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">Moonshot API Key 没有免费额度了</span><span lang="en">Moonshot API key has no free credits left</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">注册阿里云百炼/DashScope：</span><span lang="en">Register at Aliyun Bailian/DashScope:</span>
+            <pre><code>https://dashscope.console.aliyun.com/</code></pre>
+            <span lang="zh">免费获取 API Key，百万 token 额度</span><span lang="en">Get free API key with million-token quota</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Category 6: System & UX Traps ═══════════ -->
+      <div class="cat-header" data-cat="sys">
+        <span lang="zh">🖥️ 系统与 UX 陷阱</span><span lang="en">🖥️ System & UX Traps</span>
+        <span class="cat-count">2 bugs</span>
+      </div>
+
+      <!-- Bug 16 -->
+      <div class="bug-item" data-region="win">
+        <button class="bug-q">
+          <span class="bug-num">#16</span>
+          <span class="bug-title"><span lang="zh">Windows 虚拟内存太小</span><span lang="en">Windows Virtual Memory Too Small</span></span>
+          <span class="bug-meta"><span class="bug-badge win">WINDOWS</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>OSError: [WinError 1455] The paging file is too small</code>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">moviepy 调起的 FFmpeg 需要的内存超过 Windows 虚拟内存池可用量</span>
+            <span lang="en">FFmpeg spawned by moviepy needs more memory than available in Windows virtual memory pool</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">1. 关闭不必要的程序。2. 杀掉残留 ffmpeg：</span><span lang="en">1. Close unnecessary programs. 2. Kill stale ffmpeg:</span>
+            <pre><code>taskkill /F /IM ffmpeg.exe</code></pre>
+            <span lang="zh">3. 如果仍然失败：设置 → 系统 → 关于 → 高级系统设置 → 性能 → 高级 → 虚拟内存 → 自定义：初始 4096，最大 8192 → 重启</span>
+            <span lang="en">3. If still fails: Settings → System → About → Advanced system settings → Performance → Advanced → Virtual memory → Custom: Initial 4096, Max 8192 → Restart</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Bug 17 -->
+      <div class="bug-item" data-region="global">
+        <button class="bug-q">
+          <span class="bug-num">#17</span>
+          <span class="bug-title"><span lang="zh">未选择配音 = 静默失败</span><span lang="en">Empty Voice Name = Silent Failure</span></span>
+          <span class="bug-meta"><span class="bug-badge" style="background:#e8f5e9;color:#2d6a4f;">GLOBAL</span></span>
+        </button>
+        <div class="bug-a"><div class="bug-a-inner">
+          <div class="field"><div class="field-label">Symptom / <span lang="zh">症状</span></div>
+            <code>Invalid voice ''</code> — <span lang="zh">TTS 失败3次后任务返回 None（Streamlit 报 AttributeError）</span><span lang="en">TTS fails 3 times, then task returns None (AttributeError in Streamlit)</span>
+          </div>
+          <div class="field"><div class="field-label">Root Cause / <span lang="zh">根因</span></div>
+            <span lang="zh">Streamlit 侧边栏未选择配音；voice_name 默认为空字符串</span>
+            <span lang="en">No voice selected in Streamlit sidebar; voice_name defaults to empty string</span>
+          </div>
+          <div class="field"><div class="field-label">Fix / <span lang="zh">修复</span></div>
+            <span lang="zh">必须在 Speech Synthesis 下拉菜单中选择配音（例如 <code>en-US-AnaNeural-Female</code>）</span>
+            <span lang="en">Must select a voice from the Speech Synthesis dropdown (e.g. <code>en-US-AnaNeural-Female</code>)</span>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- ═══════════ Summary ═══════════ -->
+      <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--color-border);">
+        <h3 style="font-family:var(--font-en);font-size:1rem;font-weight:700;margin-bottom:12px;">
+          <span lang="zh">📋 修改文件汇总</span><span lang="en">📋 Summary: Files Modified</span>
+        </h3>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:12px;">
+          <span lang="zh">所有修改均在 <code>app/services/</code> 目录下：</span>
+          <span lang="en">All changes are in <code>app/services/</code>:</span>
+        </p>
+        <table class="summary-table">
+          <tr><th><span lang="zh">文件</span><span lang="en">File</span></th><th><span lang="zh">修改内容</span><span lang="en">Changes</span></th></tr>
+          <tr><td><code>voice.py</code></td><td><span lang="zh">5处修复：添加 mktimestamp、subs→cues、offset→cues[-1].end、create_sub→feed、WordBoundary→SentenceBoundary</span><span lang="en">5 fixes: mktimestamp (add), subs→cues, offset→cues[-1].end, create_sub→feed, WordBoundary→SentenceBoundary</span></td></tr>
+          <tr><td><code>video.py</code></td><td><span lang="zh">2处修复：temp_audiofile_path→temp_audiofile，目录路径→文件路径</span><span lang="en">2 fixes: temp_audiofile_path→temp_audiofile, directory→file path</span></td></tr>
+          <tr><td><code>config.toml</code></td><td><span lang="zh">llm_provider=qwen，pexels_api_keys 填入</span><span lang="en">llm_provider=qwen, pexels_api_keys filled</span></td></tr>
+        </table>
+
+        <h3 style="font-family:var(--font-en);font-size:1rem;font-weight:700;margin:20px 0 12px;">
+          <span lang="zh">📌 可工作的依赖版本</span><span lang="en">📌 Dependency Versions That Work</span>
+        </h3>
+        <table class="summary-table">
+          <tr><th><span lang="zh">包</span><span lang="en">Package</span></th><th><span lang="zh">版本</span><span lang="en">Version</span></th><th><span lang="zh">备注</span><span lang="en">Note</span></th></tr>
+          <tr><td><code>moviepy</code></td><td><strong>1.0.3</strong></td><td style="color:var(--color-accent);"><span lang="zh">❌ 不要用 2.0.0+</span><span lang="en">❌ NOT 2.0.0+</span></td></tr>
+          <tr><td><code>edge-tts</code></td><td><span lang="zh">最新版</span><span lang="en">latest</span></td><td><span lang="zh">⚠️ 需要上述5个代码补丁</span><span lang="en">⚠️ requires 5 code patches above</span></td></tr>
+          <tr><td><code>dashscope</code></td><td><span lang="zh">最新版</span><span lang="en">latest</span></td><td><span lang="zh">✅ 兼容 Qwen/Bailian API Key</span><span lang="en">✅ still compatible with Qwen/Bailian keys</span></td></tr>
+        </table>
+
+        <div class="price-note" style="margin-top:20px;">
+          <span lang="zh"><strong>🎯 诚实结论：</strong>MPT 可以工作——生成的视频效果不错，够用在无出镜内容频道上。但首次安装在国内网络环境下预计 <strong>2–4 小时</strong>，即使没有墙，也至少需要 30 分钟。官方文档一个字都没提这些坑。希望这份 Bug 目录能帮你省下这 4 小时。</span>
+          <span lang="en"><strong>🎯 Honest Verdict:</strong> MPT works — the output is decent enough for faceless content channels. But expect <strong>2–4 hours</strong> of debugging on first install in China. Even without the GFW, it'd still take 30+ minutes. The official docs skip everything you just read. Hopefully this bug catalog saves you those 4 hours.</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <script src="../js/i18n.js"></script>
   <script>
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(function(btn) {
@@ -411,22 +962,57 @@
       });
     });
 
-    // Language toggle
-    (function () {
-      var html = document.documentElement;
-      function setLang(lang) {
-        html.setAttribute('lang', lang);
-        document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
-        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-        try { localStorage.setItem('preferred-lang', lang); } catch (e) {}
+    // Bug accordion
+    document.querySelectorAll('.bug-q').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var answer = this.nextElementSibling;
+        var isOpen = this.classList.contains('open');
+        // Close all bug answers
+        document.querySelectorAll('.bug-q.open').forEach(function(b) { b.classList.remove('open'); });
+        document.querySelectorAll('.bug-a.open').forEach(function(a) { a.classList.remove('open'); });
+        if (!isOpen) {
+          this.classList.add('open');
+          answer.classList.add('open');
+        }
+      });
+    });
+
+    // Bug filter
+    (function() {
+      var buttons = document.querySelectorAll('.bug-filter-btn');
+      var items = document.querySelectorAll('.bug-item');
+      var cats = document.querySelectorAll('.cat-header');
+
+      function filter(region) {
+        buttons.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === region); });
+        if (region === 'all') {
+          items.forEach(function(i) { i.style.display = ''; });
+          cats.forEach(function(c) { c.style.display = ''; });
+        } else {
+          cats.forEach(function(c) { c.style.display = ''; });
+          items.forEach(function(i) {
+            i.style.display = i.dataset.region === region ? '' : 'none';
+          });
+          // Hide empty categories
+          cats.forEach(function(c) {
+            var next = c.nextElementSibling;
+            var hasVisible = false;
+            while (next && !next.classList.contains('cat-header')) {
+              if (next.style.display !== 'none') hasVisible = true;
+              next = next.nextElementSibling;
+            }
+            if (!hasVisible) c.style.display = 'none';
+          });
+        }
       }
-      document.getElementById('lang-zh').addEventListener('click', function () { setLang('zh'); });
-      document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
-      try {
-        var saved = localStorage.getItem('preferred-lang');
-        if (saved === 'zh' || saved === 'en') setLang(saved);
-      } catch (e) {}
+
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() { filter(this.dataset.filter); });
+      });
     })();
+
+    // Language toggle — uses shared ../js/i18n.js
+    // Bug accordion & filter above
   </script>
 
 </body>
