@@ -258,7 +258,7 @@ Path(<span class="code-var">OUTPUT_DIR</span>).mkdir(exist_ok=<span class="code-
     <!-- PDF Cleanup -->
     <div class="guide-section" id="cleanup">
       <h2>3. PDF Cleanup Script</h2>
-      <p class="section-intro">MarkItDown extracts text from PDFs, but the output is <strong>raw</strong>. Every real-world PDF has the same problems: duplicate sentences, CID markers <code>(cid:1)</code>, zero structure. This script fixes all of them in one pass.</p>
+      <p class="section-intro">MarkItDown extracts text from PDFs, but the output is <strong>raw</strong>. Every real-world PDF has the same problems: duplicate sentences, CID markers <code>(cid:1)</code>, zero structure. This script fixes all of them in one pass. <a href="pdf-to-markdown/">→ Full PDF to Markdown workflow guide</a></p>
 
       <h3>What goes wrong with PDFs</h3>
       <p>Every PDF I've processed has the same four problems. Here's what they look like:</p>
@@ -525,7 +525,7 @@ pipx inject markitdown-mcp 'markitdown[all]' openpyxl xlrd pandas pymupdf pdfplu
 
       <div class="faq-item">
         <button class="faq-q">How does it compare to Unstructured or LlamaParse?</button>
-        <div class="faq-a"><p>MarkItDown is simpler and lighter than both. <strong>Unstructured</strong> has more format support and partitioning features but is heavier. <strong>LlamaParse</strong> (by LlamaIndex) is better for complex PDFs but requires a cloud API. MarkItDown's sweet spot: simple, local, free, works for 80% of common document types.</p></div>
+        <div class="faq-a"><p>MarkItDown is simpler and lighter than both. <strong>Unstructured</strong> has more format support and partitioning features but is heavier. <strong>LlamaParse</strong> (by LlamaIndex) is better for complex PDFs but requires a cloud API. MarkItDown's sweet spot: simple, local, free, works for 80% of common document types. <a href="vs-unstructured/">→ Full comparison: MarkItDown vs Unstructured vs LlamaParse</a></p></div>
       </div>
 
       <div class="faq-item">
