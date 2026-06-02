@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
   <title>MarkItDown in Production — Batch, Docker, Error Fixes & LLM Comparison</title>
+  <link rel="canonical" href="https://markitdown-pro.com/projects/markitdown/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="MarkItDown in Production — Batch, Docker, Error Fixes & LLM Comparison">
+  <meta property="og:description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://markitdown-pro.com/projects/markitdown/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MarkItDown in Production — Batch, Docker, Error Fixes & LLM Comparison">
+  <meta name="twitter:description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -101,6 +111,52 @@
       .hero-nav a { font-size: 0.76rem; padding: 6px 14px; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MarkItDown in Production — Batch, Docker, Error Fixes & LLM Comparison",
+    "description": "MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).",
+    "author": { "@type": "Person", "name": "Luke" },
+    "datePublished": "2026-06-02",
+    "dateModified": "2026-06-02",
+    "url": "https://markitdown-pro.com/projects/markitdown/",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does MarkItDown preserve document formatting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Partially. Bold, italic, headings, lists, and links convert correctly. Tables with merged cells, multi-column layouts, and embedded charts often break. Test a representative sample of your documents before committing to a pipeline." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use MarkItDown without an LLM API key?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. MarkItDown works without an LLM for text extraction. The LLM is only used for image description — if your documents don't have images, or you don't need image descriptions in the output, you can skip configuring an LLM entirely." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does it compare to Unstructured or LlamaParse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MarkItDown is simpler and lighter than both. Unstructured has more format support and partitioning features but is heavier. LlamaParse (by LlamaIndex) is better for complex PDFs but requires a cloud API. MarkItDown's sweet spot: simple, local, free, works for 80% of common document types." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MarkItDown suitable for production use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, with caveats. Wrap it in the FastAPI + Docker setup shown above, add a timeout (the default has none), and implement file size limits. The library itself is stable but was designed as a demo tool — production hardening is on you." }
+      },
+      {
+        "@type": "Question",
+        "name": "What file types does it support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "DOCX, PDF, PPTX, XLSX, HTML, CSV, JSON, XML, ZIP (iterates contents), and images (via LLM description). EPUB support is partial. Legacy formats like .doc require conversion to .docx first." }
+      }
+    ]
+  }
+  </script>
 </head>
 <body style="padding-top:0;">
 
