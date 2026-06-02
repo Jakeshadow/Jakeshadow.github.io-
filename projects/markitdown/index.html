@@ -169,6 +169,7 @@
         <a href="#errors">Error Fixes</a>
         <a href="#cleanup">PDF Cleanup</a>
         <a href="#docker">Docker Deploy</a>
+        <a href="#mcp">MCP Server</a>
         <a href="#llm">LLM Comparison</a>
       </div>
     </div>
@@ -398,9 +399,64 @@ Path(<span class="code-var">OUTPUT_DIR</span>).mkdir(exist_ok=<span class="code-
       </div>
     </div>
 
+    <!-- MCP Server Integration -->
+    <div class="guide-section" id="mcp">
+      <h2>5. MCP Server Integration</h2>
+      <p class="section-intro">Turn MarkItDown into an MCP (Model Context Protocol) server. Connect it to Claude Desktop and convert any file to Markdown directly from chat — no terminal, no scripts.</p>
+
+      <h3>What is MCP?</h3>
+      <p>MCP is an open protocol that lets AI assistants like Claude Desktop talk to external tools. With a MarkItDown MCP server running, you can paste a file path into Claude and get back clean Markdown instantly. No more switching windows.</p>
+
+      <h3>Install the MCP Server</h3>
+      <pre><code>pip install markitdown-mcp</code></pre>
+      <p>Or the community edition with extra features (OCR, audio transcription):</p>
+      <pre><code>pipx install git+https://github.com/trsdn/markitdown-mcp.git
+pipx inject markitdown-mcp 'markitdown[all]' openpyxl xlrd pandas pymupdf pdfplumber</code></pre>
+
+      <h3>Configure Claude Desktop</h3>
+      <p>Open your Claude Desktop config file:</p>
+      <table class="llm-table" style="margin-bottom:16px;">
+        <tr><th>OS</th><th>Path</th></tr>
+        <tr><td>Windows</td><td><code>%APPDATA%\Claude\claude_desktop_config.json</code></td></tr>
+        <tr><td>macOS</td><td><code>~/Library/Application Support/Claude/claude_desktop_config.json</code></td></tr>
+      </table>
+
+      <p>Add this block:</p>
+      <pre><code>{
+  <span class="code-string">"mcpServers"</span>: {
+    <span class="code-string">"markitdown"</span>: {
+      <span class="code-string">"command"</span>: <span class="code-string">"markitdown-mcp"</span>,
+      <span class="code-string">"args"</span>: []
+    }
+  }
+}</code></pre>
+
+      <div class="tip-box">
+        <strong>After saving:</strong> fully quit Claude Desktop (Ctrl+Q / Cmd+Q) and restart. You'll see a new <code>convert_to_markdown</code> tool appear. Paste a file URI — <code>file:///C:/docs/report.pdf</code> or <code>https://example.com/doc.docx</code> — and Claude converts it for you.
+      </div>
+
+      <h3>Supported Formats in MCP Mode</h3>
+      <p>The MCP server supports all 29+ formats that MarkItDown handles: DOCX, PDF, PPTX, XLSX, HTML, CSV, JSON, XML, ZIP, EPUB, images (via LLM description), and audio (with optional dependencies).</p>
+
+      <h3>Docker Alternative</h3>
+      <p>If you prefer not to install Python packages locally:</p>
+      <pre><code>{
+  <span class="code-string">"mcpServers"</span>: {
+    <span class="code-string">"markitdown"</span>: {
+      <span class="code-string">"command"</span>: <span class="code-string">"docker"</span>,
+      <span class="code-string">"args"</span>: [<span class="code-string">"run"</span>, <span class="code-string">"--rm"</span>, <span class="code-string">"-i"</span>, <span class="code-string">"markitdown-mcp:latest"</span>]
+    }
+  }
+}</code></pre>
+
+      <div class="tip-box">
+        <strong>Pro tip:</strong> Mount a local directory for direct file access: add <code>"-v", "/home/user/data:/workdir"</code> to the args array. Then Claude can convert local files without uploading them anywhere.
+      </div>
+    </div>
+
     <!-- LLM Comparison -->
     <div class="guide-section" id="llm">
-      <h2>5. LLM Image Description Comparison</h2>
+      <h2>6. LLM Image Description Comparison</h2>
       <p class="section-intro">MarkItDown uses an LLM to describe images embedded in documents. Which model gives the best descriptions? I tested GPT-4o, Claude 4 Sonnet, and Gemini 2.5 Pro on the same set of 10 images from real-world documents.</p>
 
       <table class="llm-table">
