@@ -15,8 +15,8 @@
   --color-border: #e8e4df;
   --color-card-bg: #f5f2ed;
 
-  --font-en: 'Inter', system-ui, sans-serif;
-  --font-zh: 'Noto Sans SC', sans-serif;
+  --font-en: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-zh: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
 
   --max-width: 720px;
   --section-gap: 80px;
