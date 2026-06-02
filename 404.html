@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>404 — Page Not Found</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--color-bg); }
+    .error-page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; text-align: center; padding: 24px; }
+    .error-page h1 { font-size: 5rem; font-weight: 700; color: var(--color-accent); margin-bottom: 8px; line-height: 1; }
+    .error-page h2 { font-size: 1.3rem; font-weight: 600; color: var(--color-text); margin-bottom: 8px; }
+    .error-page p { font-size: 0.92rem; color: var(--color-text-secondary); max-width: 400px; margin: 0 auto 24px; line-height: 1.6; }
+    .error-page a { display: inline-block; padding: 10px 24px; background: var(--color-accent); color: #fff; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin: 4px; }
+    .error-page a.secondary { background: var(--color-card-bg); color: var(--color-text); border: 1px solid var(--color-border); }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you're looking for doesn't exist or has been moved. Check the URL or head back to explore the guides.</p>
+    <div>
+      <a href="/">Back to Home</a>
+      <a href="/projects/mpt/" class="secondary">MPT Review</a>
+      <a href="/projects/markitdown/" class="secondary">MarkItDown Guide</a>
+    </div>
+  </div>
+</body>
+</html>
