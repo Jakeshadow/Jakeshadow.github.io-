@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="7FF70277A3901FABDFB5647507DE4541">
+  <meta name="description" content="How to use MoneyPrinterTurbo — make your first AI video. UI walkthrough, prompt crafting, voice settings, and what to expect. Step-by-step tutorial.">
+  <title>How to Use MoneyPrinterTurbo — First Video Tutorial (Step by Step)</title>
+  <link rel="canonical" href="https://mpt-tutorial.com/projects/mpt/how-to-use/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Use MoneyPrinterTurbo — First Video Tutorial (Step by Step)">
+  <meta property="og:description" content="You installed it. Now make your first video. UI walkthrough, prompt crafting, voice settings, and what to expect — everything after setup.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mpt-tutorial.com/projects/mpt/how-to-use/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Use MoneyPrinterTurbo — First Video Tutorial">
+  <meta name="twitter:description" content="UI walkthrough, prompt crafting, voice settings. Make your first AI video in 5 minutes.">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    body { font-family: var(--font-en); }
+    .guide-page { max-width: 760px; margin: 0 auto; padding: 0 24px 64px; }
+    .back-link { display: inline-block; margin: 28px 0 20px; font-size: 0.85rem; color: var(--color-text-secondary); }
+    .back-link:hover { color: var(--color-accent); }
+    .guide-hero { text-align: center; padding: 40px 0 32px; border-bottom: 1px solid var(--color-border); }
+    .guide-hero h1 { font-family: var(--font-en); font-size: 1.6rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+    .guide-hero .subtitle { font-size: 0.95rem; color: var(--color-text-secondary); max-width: 540px; margin: 0 auto; line-height: 1.6; }
+    .guide-section { padding: 36px 0; border-bottom: 1px solid var(--color-border); }
+    .guide-section:last-of-type { border-bottom: none; }
+    .guide-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
+    .guide-section h3 { font-size: 1rem; font-weight: 600; margin: 18px 0 8px; }
+    .guide-section p { font-size: 0.92rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 12px; }
+    .guide-section ul, .guide-section ol { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 12px; }
+    pre { background: #1e1e2e; color: #cdd6f4; border-radius: 10px; padding: 16px 20px; overflow-x: auto; font-size: 0.83rem; line-height: 1.65; margin: 14px 0; }
+    pre code { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace; }
+    :not(pre) > code { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 4px; padding: 2px 6px; font-size: 0.85rem; color: var(--color-accent); }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+    table th { text-align: left; padding: 10px 12px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); border-bottom: 2px solid var(--color-border); }
+    table td { padding: 10px 12px; border-bottom: 1px solid var(--color-border); color: var(--color-text-secondary); vertical-align: top; }
+    td.good { color: var(--color-success); font-weight: 600; }
+    td.bad { color: #f38ba8; }
+    .tip-box { background: #e6f7ed; border: 1px solid #b7e4cf; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #1a5c38; line-height: 1.6; margin: 16px 0; }
+    .warn-box { background: #fff3cd; border: 1px solid #e8d78e; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #6c5a0c; line-height: 1.6; margin: 16px 0; }
+    .setting-card { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px 18px; margin-bottom: 12px; }
+    .setting-card h3 { margin-top: 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .setting-card h3 .required { font-size: 0.65rem; padding: 2px 6px; border-radius: 100px; background: #f38ba8; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+    .setting-card h3 .optional { font-size: 0.65rem; padding: 2px 6px; border-radius: 100px; background: var(--color-text-secondary); color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+    .setting-card p { font-size: 0.85rem; margin-bottom: 0; }
+    @media (max-width: 640px) { .guide-hero h1 { font-size: 1.3rem; } table { font-size: 0.78rem; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mpt-tutorial.com/" },
+      { "@type": "ListItem", "position": 2, "name": "MoneyPrinterTurbo Review", "item": "https://mpt-tutorial.com/projects/mpt/" },
+      { "@type": "ListItem", "position": 3, "name": "How to Use Tutorial", "item": "https://mpt-tutorial.com/projects/mpt/how-to-use/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Use MoneyPrinterTurbo — First AI Video Tutorial (Step by Step)",
+    "description": "MoneyPrinterTurbo UI walkthrough, prompt crafting guide, voice settings, and what to expect. Make your first AI video in 5 minutes.",
+    "author": { "@type": "Person", "name": "Luke" },
+    "datePublished": "2026-06-08",
+    "dateModified": "2026-06-08",
+    "url": "https://mpt-tutorial.com/projects/mpt/how-to-use/",
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body style="padding-top:0;">
+  <div class="guide-page">
+    <a href="../" class="back-link">&larr; Back to MoneyPrinterTurbo Guide</a>
+
+    <div class="guide-hero">
+      <h1>How to Use MoneyPrinterTurbo</h1>
+      <p class="subtitle">You survived the install. Now let's make your first AI video — from opening the UI to watching the final rendered file.</p>
+    </div>
+
+    <!-- UI Walkthrough -->
+    <div class="guide-section">
+      <h2>1. The Streamlit UI — What Every Field Does</h2>
+      <p>After running both terminals (backend + Streamlit), you'll see this page at <code>localhost:8501</code>. Here's what every setting does and what you can safely ignore.</p>
+
+      <div class="setting-card">
+        <h3>Video Topic <span class="required">REQUIRED</span></h3>
+        <p>The only field you <strong>must</strong> fill in. This is the video's theme — one sentence is enough. For better results, use a list format (see <a href="#prompts">Prompt Crafting</a> below).</p>
+      </div>
+
+      <div class="setting-card">
+        <h3>Video Language <span class="required">REQUIRED</span></h3>
+        <p>Determines what language the AI script and voiceover use. Set to <strong>English</strong> for English videos, <strong>Chinese</strong> for Chinese. Mismatched language + voice = broken subtitles.</p>
+      </div>
+
+      <div class="setting-card">
+        <h3>Speech Synthesis — Voice <span class="required">REQUIRED</span></h3>
+        <p>Pick a voice from the dropdown. <strong>Do not leave this blank</strong> — it will silently fail after 3 retries with no clear error. Recommended defaults:</p>
+        <ul>
+          <li>English: <code>en-US-AnaNeural-Female</code> or <code>en-US-ChristopherNeural-Male</code></li>
+          <li>Chinese: <code>zh-CN-XiaoxiaoNeural-Female</code> or <code>zh-CN-YunxiNeural-Male</code></li>
+        </ul>
+      </div>
+
+      <div class="setting-card">
+        <h3>Video Length <span class="optional">OPTIONAL</span></h3>
+        <p>Target duration in minutes. Default is 1. Longer videos = more script paragraphs = longer generation time. 1–3 minutes is the sweet spot — beyond 5 minutes, quality drops noticeably.</p>
+      </div>
+
+      <div class="setting-card">
+        <h3>Video Resolution <span class="optional">OPTIONAL</span></h3>
+        <p>Default is 1080p (1920×1080). 720p for faster renders during testing. Stick with the default for final videos — resolution barely affects generation speed since the bottleneck is script writing + footage download, not rendering.</p>
+      </div>
+
+      <div class="setting-card">
+        <h3>Enable Subtitles <span class="optional">OPTIONAL</span></h3>
+        <p>Checked by default. Adds burned-in subtitles synced to the voiceover. <strong>If you're in China, uncheck this</strong> — the subtitle feature can trigger a Whisper model download (~3GB) from Hugging Face, which is painfully slow without a VPN.</p>
+      </div>
+
+      <div class="setting-card">
+        <h3>Background Music <span class="optional">OPTIONAL</span></h3>
+        <p>Adds royalty-free background music. Leave as default or pick a track. Has negligible impact on generation time. Volume and fade settings below this are fine at defaults.</p>
+      </div>
+    </div>
+
+    <!-- Prompt Crafting -->
+    <div class="guide-section" id="prompts">
+      <h2>2. Prompt Crafting — Good Topic vs Bad Topic</h2>
+      <p>The topic field is the single biggest factor in video quality. A bad prompt produces a rambling, generic video no matter how well everything else is configured.</p>
+
+      <h3>Bad Topics (don't use these)</h3>
+      <table>
+        <tr><th>Bad Topic</th><th>Problem</th></tr>
+        <tr><td class="bad">"AI"</td><td>Too vague. The LLM has no direction — it'll produce generic fluff.</td></tr>
+        <tr><td class="bad">"How to be happy"</td><td>Open-ended. No structure. Output is philosophical rambling with no visual hooks.</td></tr>
+        <tr><td class="bad">"The history of the Roman Empire"</td><td>Way too broad for a 1-minute video. The script will be a shallow summary.</td></tr>
+        <tr><td class="bad">"Why my product is the best"</td><td>Promotional tone. AI generates marketing-speak. Pexels has no relevant footage.</td></tr>
+      </table>
+
+      <h3>Good Topics (copy these patterns)</h3>
+      <table>
+        <tr><th>Good Topic</th><th>Why it works</th></tr>
+        <tr><td class="good">"Top 5 facts about black holes that will blow your mind"</td><td>List format = natural structure. "Blow your mind" sets an engaging tone. Visual hooks are obvious (space footage).</td></tr>
+        <tr><td class="good">"3 things I wish I knew before visiting Tokyo"</td><td>List + personal angle. Easy to find matching Pexels footage. ~60 seconds of content fits naturally.</td></tr>
+        <tr><td class="good">"Why cats sleep so much: the science explained"</td><td>Specific question → answer structure. Clear visual direction (cat footage). Curiosity-driven title.</td></tr>
+        <tr><td class="good">"Beginner's guide to investing: 4 things to do first"</td><td>Actionable, numbered, clear audience. Works as an educational explainer.</td></tr>
+      </table>
+
+      <div class="tip-box">
+        <strong>The formula:</strong> <code>[Number] + [interesting angle] + [specific topic]</code>. Examples: "7 surprising ways...", "3 mistakes people make when...", "How X actually works (in 60 seconds)". List-based topics produce the most watchable videos because each bullet point becomes a natural scene transition.
+      </div>
+    </div>
+
+    <!-- Voice & Language -->
+    <div class="guide-section">
+      <h2>3. Voice, Language & Region Settings</h2>
+
+      <h3>English Videos</h3>
+      <pre><code>Video Language: English (US)
+Voice: en-US-AnaNeural-Female (clear, natural)
+Subtitle: ON (default)</code></pre>
+      <p>Stick with <code>en-US-</code> voices. UK voices (<code>en-GB-</code>) are fine but sound slightly more formal. Avoid <code>en-IN-</code> (Indian accent) unless your audience expects it — the accent is thick and may reduce perceived quality.</p>
+
+      <h3>Chinese Videos</h3>
+      <pre><code>Video Language: Chinese (Mandarin) / 中文
+Voice: zh-CN-XiaoxiaoNeural-Female (xiaoxiao, natural)
+Subtitle: OFF (skip Whisper download)</code></pre>
+      <p>Chinese videos work well with MPT, but two things to know: (1) Pexels search is English-only, so the footage may not match Chinese topics as well — use specific English keywords in your topic to help. (2) Edge TTS Chinese voices are good quality but fewer options than English.</p>
+
+      <h3>Other Languages</h3>
+      <p>MPT supports Japanese, Korean, German, French, and more via Edge TTS. Check the voice dropdown for available options. The LLM prompt is sent in English regardless of video language setting, so script quality for non-English/Chinese languages varies.</p>
+
+      <div class="warn-box">
+        <strong>Region note (China):</strong> Edge TTS calls go to <code>speech.platform.bing.com</code> — blocked in China. Keep your VPN ON during video generation or you'll get a 403 error. See the <a href="../fix-edge-tts-403/">edge-tts fix guide</a>.
+      </div>
+    </div>
+
+    <!-- The Generation Process -->
+    <div class="guide-section">
+      <h2>4. What Happens When You Click "Generate"</h2>
+      <p>Understanding the pipeline helps you debug when things go wrong. Here's the sequence, in order:</p>
+
+      <ol>
+        <li><strong>Script Writing (~10–30s)</strong> — LLM generates a video script from your topic. Watch the backend terminal for progress; Streamlit shows a spinner. If this hangs forever, your LLM provider is down (see <a href="../fix-g4f-not-working/">g4f fix</a>).</li>
+        <li><strong>Voiceover (~5–15s)</strong> — Edge TTS converts each sentence to speech. You'll see progress in the backend terminal. 403 error at this stage = VPN is off or speech.platform.bing.com is blocked.</li>
+        <li><strong>Footage Search (~20–60s)</strong> — Pexels API searches for stock footage matching each sentence. This is the slowest step. Each sentence gets its own search; ~10–20 searches per minute video. If stuck here, Pexels may be blocked — turn on VPN. Registering a free Pexels API key speeds this up significantly.</li>
+        <li><strong>Video Assembly (~15–30s)</strong> — moviepy + FFmpeg stitch everything together: footage clips, voiceover audio, subtitles, background music. <code>moviepy.editor not found</code> at this stage means you need v1.0.3 (see <a href="../fix-moviepy-not-found/">moviepy fix</a>).</li>
+        <li><strong>Done!</strong> — Video saves to <code>MoneyPrinterTurbo/output/</code> as an MP4 file. Streamlit shows a download link and a preview player.</li>
+      </ol>
+
+      <div class="tip-box">
+        <strong>Total time for a 1-minute video:</strong> ~45–90 seconds with good internet. ~2–3 minutes if Pexels is slow or you're on a VPN. The backend terminal shows much more detail than Streamlit — keep it visible to see what's actually happening.
+      </div>
+    </div>
+
+    <!-- Output Quality -->
+    <div class="guide-section">
+      <h2>5. What to Expect from the Output</h2>
+
+      <p><strong>The result is a slideshow-video, not AI-generated footage.</strong> MPT doesn't create video from scratch — it assembles existing stock clips. Think of it as an automated version of: find stock footage → write narration → record voiceover → edit together in a timeline.</p>
+
+      <h3>What's good</h3>
+      <ul>
+        <li>Polished, watchable result with zero editing skill required</li>
+        <li>Voiceover is natural-sounding and well-timed to footage</li>
+        <li>Subtitles are accurate and properly synced</li>
+        <li>Perfect for YouTube explainers, faceless content, social media clips</li>
+        <li>Consistent output quality — every video using the same settings looks similar</li>
+      </ul>
+
+      <h3>What's not</h3>
+      <ul>
+        <li>Footage is generic — Pexels stock clips, not custom visuals</li>
+        <li>Video can feel like a slideshow — transitions are basic crossfades</li>
+        <li>No character, no animation, no custom graphics</li>
+        <li>Audio-only mistakes (wrong emphasis, odd pauses) can't be fixed without re-rendering</li>
+        <li>Longer videos (>3 min) tend to repeat footage or stretch thin content</li>
+      </ul>
+
+      <div class="warn-box">
+        <strong>Set expectations:</strong> This is not Sora or Runway. MPT makes <em>informational videos</em> — the kind you'd see on a faceless YouTube channel explaining "5 facts about X." If you want cinematic AI-generated footage, this isn't the tool. If you want to produce 10 explainer videos in an afternoon without touching a timeline, it's perfect.
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="guide-section">
+      <h2>6. After Your First Video</h2>
+
+      <h3>Tweak and re-generate</h3>
+      <p>The first video is rarely the best. Try these adjustments:</p>
+      <ul>
+        <li><strong>Better topic</strong> — More specific, more list-based. See <a href="#prompts">prompt crafting</a> above.</li>
+        <li><strong>Different voice</strong> — Some voices read faster or slower. Experiment with 2–3 options.</li>
+        <li><strong>Shorter length</strong> — 45–60 seconds often produces tighter results than 90 seconds.</li>
+        <li><strong>Pexels API key</strong> — Free registration at pexels.com → paste into <code>config.toml</code>. Dramatically faster footage search with a key vs without.</li>
+      </ul>
+
+      <h3>Batch generation</h3>
+      <p>Once you have a winning formula, batch-produce videos by reusing settings. MPT doesn't have built-in batch mode, but you can:</p>
+      <ul>
+        <li>Keep the same voice, resolution, language, and music settings</li>
+        <li>Paste in a new topic → generate → repeat</li>
+        <li>For automation: v1.2.x's API endpoint accepts POST requests — script it with curl or Python</li>
+      </ul>
+
+      <h3>Hit a problem?</h3>
+      <ul>
+        <li><strong>g4f errors</strong> → <a href="../fix-g4f-not-working/">Switch to Qwen (free, no VPN)</a></li>
+        <li><strong>moviepy crash</strong> → <a href="../fix-moviepy-not-found/">Install moviepy==1.0.3</a></li>
+        <li><strong>Edge TTS 403</strong> → <a href="../fix-edge-tts-403/">VPN fix for China</a></li>
+        <li><strong>No Web UI?</strong> → <a href="../fix-no-gui/">Switch to v1.1.0</a></li>
+        <li><strong>Full bug catalog</strong> → <a href="../#bugs">18 installation bugs with fixes</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

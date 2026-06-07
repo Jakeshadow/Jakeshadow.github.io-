@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="7FF70277A3901FABDFB5647507DE4541">
+  <meta name="description" content="MoneyPrinterTurbo has no Web UI? v1.2.x is API-only. Switch to v1.1.0 — the last version with Streamlit GUI. One git command to fix.">
+  <title>MoneyPrinterTurbo No Web Interface Fix — Switch to v1.1.0 (GUI)</title>
+  <link rel="canonical" href="https://mpt-tutorial.com/projects/mpt/fix-no-gui/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="MoneyPrinterTurbo No Web Interface Fix — Switch to v1.1.0 (GUI)">
+  <meta property="og:description" content="Installed MoneyPrinterTurbo but only see an API docs page? You got API-only v1.2.x. Here's how to switch to v1.1.0 with the Streamlit GUI.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mpt-tutorial.com/projects/mpt/fix-no-gui/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MoneyPrinterTurbo No Web Interface Fix — Switch to v1.1.0 (GUI)">
+  <meta name="twitter:description" content="v1.2.x is API-only. One git checkout command to get the Streamlit GUI back.">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    body { font-family: var(--font-en); }
+    .fix-page { max-width: 760px; margin: 0 auto; padding: 0 24px 64px; }
+    .back-link { display: inline-block; margin: 28px 0 20px; font-size: 0.85rem; color: var(--color-text-secondary); }
+    .back-link:hover { color: var(--color-accent); }
+    .fix-hero { text-align: center; padding: 40px 0 32px; border-bottom: 1px solid var(--color-border); }
+    .fix-hero h1 { font-family: var(--font-en); font-size: 1.6rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+    .fix-hero .subtitle { font-size: 0.95rem; color: var(--color-text-secondary); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+    .fix-section { padding: 36px 0; border-bottom: 1px solid var(--color-border); }
+    .fix-section:last-of-type { border-bottom: none; }
+    .fix-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
+    .fix-section h3 { font-size: 1rem; font-weight: 600; margin: 18px 0 8px; }
+    .fix-section p { font-size: 0.92rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 12px; }
+    .fix-section ul, .fix-section ol { font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.8; padding-left: 20px; margin-bottom: 12px; }
+    pre { background: #1e1e2e; color: #cdd6f4; border-radius: 10px; padding: 16px 20px; overflow-x: auto; font-size: 0.83rem; line-height: 1.65; margin: 14px 0; }
+    pre code { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace; }
+    :not(pre) > code { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 4px; padding: 2px 6px; font-size: 0.85rem; color: var(--color-accent); }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+    table th { text-align: left; padding: 10px 12px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); border-bottom: 2px solid var(--color-border); }
+    table td { padding: 10px 12px; border-bottom: 1px solid var(--color-border); color: var(--color-text-secondary); vertical-align: top; }
+    td.win { color: var(--color-success); font-weight: 700; }
+    td.lose { color: #f38ba8; }
+    .tip-box { background: #e6f7ed; border: 1px solid #b7e4cf; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #1a5c38; line-height: 1.6; margin: 16px 0; }
+    .warn-box { background: #fff3cd; border: 1px solid #e8d78e; border-radius: 8px; padding: 14px 18px; font-size: 0.85rem; color: #6c5a0c; line-height: 1.6; margin: 16px 0; }
+    @media (max-width: 640px) { .fix-hero h1 { font-size: 1.3rem; } table { font-size: 0.78rem; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mpt-tutorial.com/" },
+      { "@type": "ListItem", "position": 2, "name": "MoneyPrinterTurbo Review", "item": "https://mpt-tutorial.com/projects/mpt/" },
+      { "@type": "ListItem", "position": 3, "name": "No Web UI Fix", "item": "https://mpt-tutorial.com/projects/mpt/fix-no-gui/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MoneyPrinterTurbo No Web Interface Fix — Switch to v1.1.0 with Streamlit GUI",
+    "description": "Installed MoneyPrinterTurbo but only see /docs API page? v1.2.x removed the Web UI. Switch to v1.1.0 for the Streamlit GUI — one git command.",
+    "author": { "@type": "Person", "name": "Luke" },
+    "datePublished": "2026-06-08",
+    "dateModified": "2026-06-08",
+    "url": "https://mpt-tutorial.com/projects/mpt/fix-no-gui/",
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body style="padding-top:0;">
+  <div class="fix-page">
+    <a href="../" class="back-link">&larr; Back to MoneyPrinterTurbo Guide</a>
+
+    <div class="fix-hero">
+      <h1>MoneyPrinterTurbo: No Web Interface? Here's Why.</h1>
+      <p class="subtitle">You installed the latest version. Opened the browser. Instead of a nice GUI, you got a bare API docs page at <code>/docs</code>. You didn't break anything — you just grabbed the wrong version.</p>
+    </div>
+
+    <div class="fix-section">
+      <h2>What You're Seeing</h2>
+      <p>You followed a tutorial, cloned the repo, ran <code>python main.py</code>, and opened <code>http://127.0.0.1:8080</code>. Instead of a friendly web interface with buttons and forms, you see this:</p>
+      <ul>
+        <li>A FastAPI docs page (<code>/docs</code>) with endpoints like <code>POST /api/v1/videos</code></li>
+        <li>No Streamlit UI at <code>localhost:8501</code></li>
+        <li>No button to generate a video — just API specs</li>
+        <li><code>streamlit run webui/Main.py</code> fails — "file not found"</li>
+      </ul>
+      <p><strong>This is not a bug. You installed v1.2.x — an API-only rewrite with no GUI.</strong></p>
+    </div>
+
+    <div class="fix-section">
+      <h2>Why This Happened</h2>
+      <p>MoneyPrinterTurbo went through a major rewrite between v1.1.0 and v1.2.x:</p>
+      <ul>
+        <li><strong>v1.1.0 (June 2024)</strong> — Streamlit Web UI + FastAPI backend. Point-and-click interface. Built-in Edge TTS. g4f support for free AI. <strong>This is what all the tutorials show.</strong></li>
+        <li><strong>v1.2.x (2025+)</strong> — Complete rewrite. FastAPI only. No Streamlit. No Edge TTS. Requires external API keys. Designed for developers building pipelines, not for people who just want to make a video.</li>
+      </ul>
+      <p>If you ran <code>git clone https://github.com/harry0703/MoneyPrinterTurbo.git</code> without specifying a branch, you got the latest — v1.2.x. Most tutorials and YouTube videos still show v1.1.0, so nothing looks familiar.</p>
+    </div>
+
+    <div class="fix-section">
+      <h2>The Fix: One Command</h2>
+      <p>Switch to v1.1.0 — the last version with a working Web UI:</p>
+      <pre><code>cd MoneyPrinterTurbo
+git checkout v1.1.0</code></pre>
+      <p>If you haven't cloned the repo yet, do it the right way from the start:</p>
+      <pre><code>git clone --branch v1.1.0 --depth 1 https://github.com/harry0703/MoneyPrinterTurbo.git
+cd MoneyPrinterTurbo</code></pre>
+      <p>Then install and run as usual:</p>
+      <pre><code>pip install -r requirements.txt
+# Terminal 1 — backend
+python main.py
+# Terminal 2 — frontend
+streamlit run webui/Main.py</code></pre>
+      <p>Browser opens at <strong>http://localhost:8501</strong>. You'll see the actual GUI.</p>
+
+      <div class="tip-box">
+        <strong>Verify you're on the right version:</strong> Run <code>git describe --tags</code>. It should print <code>v1.1.0</code>. If it shows <code>v1.2.x</code> or a commit hash, you're still on the wrong version.
+      </div>
+    </div>
+
+    <div class="fix-section">
+      <h2>v1.1.0 vs v1.2.x: When to Use Which</h2>
+      <table>
+        <tr><th></th><th>v1.1.0</th><th>v1.2.x</th></tr>
+        <tr>
+          <td><strong>Interface</strong></td>
+          <td class="win">Streamlit Web UI — point and click</td>
+          <td class="lose">FastAPI only — no GUI</td>
+        </tr>
+        <tr>
+          <td><strong>Voiceover</strong></td>
+          <td class="win">Built-in Edge TTS (free, no key)</td>
+          <td class="lose">Requires Azure API key</td>
+        </tr>
+        <tr>
+          <td><strong>AI Script Writing</strong></td>
+          <td class="win">g4f (free), OpenAI, Qwen, Moonshot</td>
+          <td>OpenAI-compatible providers only</td>
+        </tr>
+        <tr>
+          <td><strong>Architecture</strong></td>
+          <td>2 processes: FastAPI + Streamlit</td>
+          <td class="win">Single process: FastAPI</td>
+        </tr>
+        <tr>
+          <td><strong>Best for</strong></td>
+          <td class="win">Beginners, one-off videos, non-coders</td>
+          <td>Developers, CI/CD pipelines, API integration</td>
+        </tr>
+        <tr>
+          <td><strong>First-time setup</strong></td>
+          <td>~30 min (after fixes)</td>
+          <td class="win">~15 min</td>
+        </tr>
+        <tr>
+          <td><strong>Free to use?</strong></td>
+          <td class="win">Yes (g4f + Edge TTS = $0)</td>
+          <td class="lose">Need paid API keys</td>
+        </tr>
+      </table>
+
+      <div class="warn-box">
+        <strong>If you actually want v1.2.x:</strong> It's not broken — just different. v1.2.x is a clean FastAPI server designed for programmatic use. If you're building an automated pipeline, integrating MPT into another app, or prefer curl over clicking buttons, v1.2.x is the better choice. But most people searching "no web interface" want v1.1.0.
+      </div>
+    </div>
+
+    <div class="fix-section">
+      <h2>Still Not Working?</h2>
+      <p>After switching to v1.1.0, you might hit other issues. The most common ones:</p>
+      <ul>
+        <li><strong>moviepy.editor not found</strong> → <a href="../fix-moviepy-not-found/">moviepy fix guide</a></li>
+        <li><strong>edge-tts 403 error</strong> → <a href="../fix-edge-tts-403/">edge-tts fix guide</a></li>
+        <li><strong>g4f providers all fail</strong> → <a href="../fix-g4f-not-working/">g4f fix guide</a></li>
+        <li><strong>Full setup walkthrough</strong> → <a href="../setup-guide/">10-minute setup guide</a></li>
+        <li><strong>Ready to use MPT?</strong> → <a href="../how-to-use/">How to make your first video</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

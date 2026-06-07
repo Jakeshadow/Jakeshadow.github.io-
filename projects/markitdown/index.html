@@ -224,7 +224,7 @@ Path(<span class="code-var">OUTPUT_DIR</span>).mkdir(exist_ok=<span class="code-
         <h3><span class="icon">&#9888;</span> Tables come out scrambled</h3>
         <p>Complex tables (merged cells, nested tables) lose structure during conversion. The output is technically valid Markdown but unreadable.</p>
         <div class="fix-label">Fix</div>
-        <p>Pre-process the document. For DOCX, use <code>python-docx</code> to extract tables separately. For PDFs with heavy tables, use <code>camelot</code> or <code>tabula</code> before feeding to MarkItDown.</p>
+        <p>Pre-process the document. For DOCX, use <code>python-docx</code> to extract tables separately. For PDFs with heavy tables, use <code>camelot</code> or <code>tabula</code> before feeding to MarkItDown. <a href="table-fix/">→ Full table fix guide: DOCX, PDF, XLSX &amp; merged cells</a></p>
         <div class="term-output">$ python -c "<span class="err">from markitdown import MarkItDown; md = MarkItDown(); print(md.convert('complex_table.docx').text_content)</span>"
 <span class="err">| Column A | Column B | Column C |</span>
 <span class="err">| --- | --- | --- |</span>
