@@ -64,9 +64,32 @@
     "description": "Honest comparison of document conversion tools: MarkItDown, Unstructured, and LlamaParse. Features, pricing, accuracy, and recommendations.",
     "author": { "@type": "Person", "name": "Luke" },
     "datePublished": "2026-06-02",
-    "dateModified": "2026-06-02",
+    "dateModified": "2026-06-09",
     "url": "https://markitdown-pro.com/projects/markitdown/vs-unstructured/",
     "isAccessibleForFree": true
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is MarkItDown better than Unstructured?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on your use case. MarkItDown (140K GitHub stars, MIT license) is better for simple Office-to-Markdown conversion — fast, free, local. Unstructured is better for complex PDFs with layout detection, table extraction, and production RAG pipelines. If your documents are mostly DOCX/PPTX/XLSX, use MarkItDown. If you need enterprise-grade PDF parsing, use Unstructured." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MarkItDown really free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. MarkItDown is open-source under the MIT license — completely free for personal and commercial use, no API keys required, runs entirely offline. You only pay for the LLM API calls if you use the image description feature (configurable with your own API key)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which document converter handles tables best?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LlamaParse has the best table extraction for complex PDFs, followed by Unstructured. MarkItDown's table handling is basic — merged cells and complex layouts often break. If tables are critical, use Unstructured or LlamaParse. For simple Office document tables, MarkItDown handles them well." }
+      }
+    ]
   }
   </script>
 </head>
@@ -76,7 +99,7 @@
 
     <div class="guide-hero">
       <h1>MarkItDown vs Unstructured vs LlamaParse</h1>
-      <p class="subtitle">Honest comparison of the three most popular document-to-Markdown tools. Which one fits your workflow?</p>
+      <p class="subtitle"><strong>MarkItDown: free, local, 140K GitHub stars, MIT license.</strong> Unstructured: enterprise-grade layout detection, 25+ data connectors. LlamaParse: AI-powered PDF parsing, cloud-only. Which one fits your stack? Start here.</p>
     </div>
 
     <div class="guide-section">
@@ -162,8 +185,8 @@
       <h2>Detailed Breakdown</h2>
 
       <div class="verdict-card">
-        <h3>MarkItDown — Best for: Simple, Local, Free</h3>
-        <p>Microsoft's lightweight converter. Install in one line, works entirely offline, no API keys required. The LLM-powered image description feature is a standout — it uses GPT or Claude to describe embedded images in documents, making the output Markdown searchable.</p>
+        <h3>MarkItDown — Best for: Simple, Local, Free (140K+ GitHub Stars)</h3>
+        <p>Microsoft's lightweight converter — <strong>140,000+ GitHub stars</strong>, growing at ~200 stars/day. Install in one line, works entirely offline, no API keys required. The LLM-powered image description feature is a standout — it uses GPT or Claude to describe embedded images in documents, making the output Markdown searchable.</p>
         <p><strong>Strengths:</strong> Zero cost, no cloud dependency, MCP Server for Claude Desktop integration, 29+ format support, MIT license.</p>
         <p><strong>Weaknesses:</strong> PDF extraction is basic — no layout detection, no table parsing. Complex PDFs with multi-column layouts or merged table cells produce garbled output. Designed as a demo tool — production hardening is on you.</p>
       </div>

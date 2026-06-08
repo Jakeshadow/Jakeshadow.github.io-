@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="msvalidate.01" content="7FF70277A3901FABDFB5647507DE4541">
-  <meta name="description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
+  <meta name="description" content="Convert PDF, DOCX, PPTX & 10+ formats to Markdown — Microsoft's 140K-star tool. Batch scripts, Docker, error fixes & LLM comparison (GPT vs Claude vs Gemini).">
   <title>MarkItDown in Production — Batch, Docker & Error Fixes</title>
   <link rel="canonical" href="https://markitdown-pro.com/projects/markitdown/">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="MarkItDown in Production — Batch, Docker & Error Fixes">
-  <meta property="og:description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
+  <meta property="og:description" content="Convert PDF, DOCX, PPTX & 10+ formats to Markdown with Microsoft's 140K-star open-source tool. Batch scripts, Docker, error fixes & LLM comparison included.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://markitdown-pro.com/projects/markitdown/">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MarkItDown in Production — Batch, Docker & Error Fixes">
-  <meta name="twitter:description" content="MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).">
+  <meta name="twitter:description" content="Convert PDF, DOCX, PPTX & 10+ formats to Markdown with Microsoft's 140K-star tool. Batch, Docker, error fixes & LLM comparison included.">
   <link rel="stylesheet" href="../../css/style.css">
   <style>
     body { font-family: var(--font-en); }
@@ -124,10 +124,10 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "MarkItDown in Production — Batch, Docker, Error Fixes & LLM Comparison",
-    "description": "MarkItDown in production: batch processing scripts, common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini).",
+    "description": "Convert PDF, DOCX, PPTX & 10+ formats to Markdown with Microsoft's 140K-star open-source tool. Batch scripts, Docker, error fixes & LLM comparison for production use.",
     "author": { "@type": "Person", "name": "Luke" },
     "datePublished": "2026-06-02",
-    "dateModified": "2026-06-02",
+    "dateModified": "2026-06-09",
     "url": "https://markitdown-pro.com/projects/markitdown/",
     "isAccessibleForFree": true
   }
@@ -174,7 +174,10 @@
     <!-- Hero -->
     <div class="guide-hero">
       <h1>MarkItDown in Production</h1>
-      <p class="subtitle">Beyond <code>pip install</code>. Batch scripts, error fixes, Docker deployment, and honest LLM comparisons — everything the official docs don't cover.</p>
+      <p class="subtitle"><strong>Convert PDF, DOCX, PPTX, Excel, and 10+ formats to clean Markdown</strong> with Microsoft's 140K-star open-source tool. Batch processing scripts, 5 common error fixes, Docker deployment, and LLM comparison (GPT vs Claude vs Gemini) — everything you need to run MarkItDown in production.</p>
+      <div class="hero-meta" style="text-align:center;font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:20px;">
+        <span>140K+ GitHub stars</span><span>&middot;</span><span>15+ formats</span><span>&middot;</span><span>MIT license</span><span>&middot;</span><span>~200 stars/day</span>
+      </div>
       <div class="hero-nav">
         <a href="#batch">Batch Processing</a>
         <a href="#errors">Error Fixes</a>
@@ -188,7 +191,7 @@
     <!-- Batch Processing -->
     <div class="guide-section" id="batch">
       <h2>1. Batch Processing</h2>
-      <p class="section-intro">Processing one file is easy. Processing 100 files without losing your mind takes a script. Here's the one I use in production.</p>
+      <p class="section-intro">Processing one file is easy. Processing 100 files without losing your mind takes a script. MarkItDown's Markdown output is <strong>3-8x more token-efficient</strong> than raw HTML for LLM consumption — an <code>&lt;h1 class="title"&gt;</code> costs 23 tokens, <code># Title</code> costs 3. Here's the production batch script that converts entire directories.</p>
 
       <pre><code><span class="code-keyword">import</span> os
 <span class="code-keyword">from</span> markitdown <span class="code-keyword">import</span> MarkItDown
